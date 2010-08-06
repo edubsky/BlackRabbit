@@ -1,0 +1,22 @@
+/***********************************************************************************
+ * Footer
+ ***********************************************************************************/
+#footer {
+  color:#FFF;
+  text-align:left;
+  float:left;
+  width:100%;  
+  background: transparent url(../img/layout/shadow.png) 0 -6px repeat-x;
+}
+#footer p {
+  float:left;
+  padding:10px 20px;
+  font-size:102%;
+}
+#footer a.cakephpower {
+  float:left;
+  padding:3px 4px 4px 5px;
+}
+#footer a img {
+  float:left;
+}

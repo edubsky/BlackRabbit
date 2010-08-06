@@ -1,0 +1,224 @@
+/***********************************************************************************
+ * Sidebar
+ ***********************************************************************************/
+.sidebar {
+  padding-bottom:20px;
+}
+.sidebar div {
+  margin:10px 0;
+  background:#FFF;
+  border:1px solid #ccc;
+}
+.sidebar div div {
+  margin:0;
+  border:0;
+}
+.sidebar p.empty {
+  font-size:1em;
+  font-weight:bold;
+  color:#777;
+  padding:5px;
+}
+/* side bar header*/
+.sidebar h3 {
+  margin:0;
+  padding:0;
+  font-size:1.1em;
+  background: transparent url(../img/layout/bg_table_header.png) 0 -5px repeat-x;
+  border-botttom:1px solid #bbb;
+}
+.sidebar h3 a.toggle {
+  display:block;
+  margin:0;
+  padding:3px 5px 3px 7px;
+}
+.sidebar h3 a.toggle.open {
+  background:transparent url(/img/layout/widget_open.png) right center no-repeat;
+}
+.sidebar h3 a.toggle.closed {
+  background:transparent url(/img/layout/widget_close.png) right center no-repeat;
+}
+.sidebar .toggle_wrapper {
+}
+.sidebar .widget ul {
+  margin:0;
+  padding:5px 10px;
+}
+/* menu 
+.sidebar ul.menu {
+  list-style:none;
+  padding:5px 0;
+  margin:0;
+  border:1px solid #CCC;
+  background:#EEE;
+  -moz-border-radius:5px;
+}
+.sidebar ul.menu li {
+  padding:0;
+  margin:0;
+}
+.sidebar ul.menu li a {
+  background:#FCFCFC;
+  display:block;
+  padding:5px 5px 5px 10px;
+  border:1px solid #CCC;
+  border-left:0;
+  border-right:0;
+}
+.sidebar ul.menu li a.first {
+  border-bottom:0;
+}
+.sidebar ul.menu li a:hover {
+  background:#F2F2F2;
+}
+*/
+/* sidebar widgets 
+.sidebar .widget {
+  -moz-border-radius:5px;
+  border:1px double #EEE;
+  padding:2px;
+  margin:0 0 5px 0;
+}
+.sidebar .widget:first-child {
+  margin-top:25px;
+}
+.sidebar .widget_header {
+  background:#EEE url(/img/layout/bg_widget.png) 0 0 repeat-x;
+  -moz-border-radius:3px 3px 0 0;
+}
+.sidebar .widget_content {
+  background:#FFF;
+  -moz-border-radius:0 0 3px 3px;
+}
+.widget_content .toggle_wrapper {
+  padding:5px;
+}
+
+.sidebar .widget ul li {
+  list-style-type:none;
+  margin:0;
+  padding:0;
+}
+.sidebar .widget ul.with_bullets li {
+  list-style-type:none;
+  margin-left:20px;
+  padding-left:5px;
+  list-style-type:circle;
+}
+.sidebar .widget ul.with_bullets li:hover {
+  list-style-type:disc;
+}
+.sidebar .widget ul li a {
+  display:block;
+  padding-top:4px;
+  padding-bottom:4px;
+}
+*/
+/* shortcuts */
+.shortcuts{
+  padding-top:12px;
+  padding-bottom:10px;
+}
+.shortcuts.inline h3 {
+  float:left;
+  font-size:1em;
+  color:#777;
+  padding-right:10px;
+}
+.shortcuts.inline ul li{
+  list-style-type: none;
+  margin-left:0;
+}
+.shortcuts.inline ul.with_icon li{
+  display:inline;
+  width:16px;
+  padding:0;
+  margin:0;
+}
+.shortcuts.inline ul.with_icon a{
+  padding-left:25px;
+}
+.shortcuts.inline ul.with_icon a span{
+  display:none;
+}
+/*
+.sidebar .shortcuts h3 {
+  background:transparent url(/img/icons/S/keyboard.png) 6px center no-repeat;
+}
+.sidebar .search h3 {
+  background:transparent url(/img/icons/S/magnifier.png) 6px center no-repeat;
+}*/
+/* Search 
+.sidebar .search .input.text input {
+  border:2px solid #CCC;
+  padding-left:25px;
+  margin:0;
+  width:87%;
+  background:#FFF url(/img/icons/S/search_mini.jpg) 4px center no-repeat;
+}
+.sidebar .search .input select {
+  width:100%;
+  margin:-10px 0 0 0;
+  padding:0;
+}
+.sidebar .submit input {
+  margin:0;
+  font-size:1.3em;
+  width:100%;
+}
+.sidebar form div {
+  clear:both;
+  margin:0;
+  padding:5px;
+  vertical-align:text-top;
+}
+.sidebar textarea {
+  border:2px solid #CCC;
+  width:99%;
+  margin: 2px 0 0 0;
+  padding:0;
+  font-size:1em;
+}
+*/
+/* chat 
+.sidebar .chat label {
+  display:none;
+  margin:0;
+}
+.sidebar .chat label {
+  display:none;
+}
+.sidebar .chat .chat_window {
+  margin:0;
+}
+*/
+/* helpbox */
+.sidebar .help {
+}
+.sidebar .help h3 {
+  padding:2px;
+  padding-left:30px;
+  background:transparent url(../img/icons/S/help.png) 5px center no-repeat;
+  border-bottom:1px dotted #CCC;
+  font-weight:bold;
+}
+.sidebar .help ul {
+  font-size:1.1em;
+}
+/* widget icons
+.sidebar .favorites h3 {
+  background:transparent url(/img/icons/S/favorites.png) 6px center no-repeat;
+}
+.sidebar .news h3 {
+  background:transparent url(/img/icons/S/newspaper.png) 6px center no-repeat;
+}
+.sidebar .chat h3 {
+  background:transparent url(/img/icons/S/cup.png) 6px center no-repeat;
+}
+.sidebar .segments h3 {
+  background:transparent url(/img/icons/S/table_multiple.png) 6px center no-repeat;
+}
+.sidebar .filters h3 {
+  background:transparent url(/img/icons/S/cog.png) 6px center no-repeat;
+}
+ */

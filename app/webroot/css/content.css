@@ -1,0 +1,315 @@
+/***********************************************************************************
+ * Content
+ ***********************************************************************************/
+.content{
+  padding-top:10px;
+}
+.content .view, .content .edit {
+}
+.content .actions li.nothing {
+  border:0;
+  padding-top:5px;
+  font-size:1.1em;
+}
+.content p.empty,
+.content p.nothing {
+  clear:both;
+  margin:5px 2px 5px 0px;
+  padding:10px;
+  background:#FAFAFA;
+  border:1px solid #EEE;
+  font-size: 1.4em;
+  text-align:center;
+  color:#333;
+}
+.content p.help {
+  font-size:1.1em;
+  padding-left:5px;
+}
+/* forms layout
+.content .half {
+  float:left;
+  width:46%;
+  min-width:100px;
+  margin:0;
+  padding:0 5px;
+  clear:none;
+}
+.content .half.left {
+  margin-right:15px;
+  clear:left;
+}
+.content .half.right {
+  clear:right;
+}
+.content .full {
+  width:552px;
+  width:98%;
+}
+.content fieldset.half {
+  margin-top:10px;
+  padding:10px 15px;
+}
+.content .half .input {
+  width:45%;
+}
+ */
+/* menu */
+.content .menu {
+  padding:10px 10px 5px 0px;
+  margin:5px 10px 5px 0px;
+  width:99%;
+  float:left;
+  clear:both;
+  border-bottom:1px solid #CCC;
+}
+.content .menu.with_tabs  li {
+  float:left;
+  margin:0 0 0 10px;
+  list-style-type:none;
+}
+.content .menu.with_tabs li a {
+  font-size:1.1em;
+  color:#003300;
+  background:#EFEFEF;
+  padding:5px 10px;
+  -moz-border-radius:3px 3px 0 0;
+  border:1px solid #CCC;
+}
+.content .menu.with_tabs li a.selected, .content .menu li a.selected:hover {
+  background:#FFF;
+  color:#003300;
+  border-bottom:1px solid #FFF;
+}
+.content .menu.with_tabs li a:hover {
+  background:#FFF;
+  color:#003300;
+  padding:5px 10px;
+  border-bottom:1px solid #FFF;
+}
+.content .menu.with_tabs.before_form {
+  margin-bottom:10px;
+}
+
+
+/* filter 
+.filter {
+  float:left;
+  width:100%;
+  clear:both;
+  margin:5px;
+}
+.filter .input, .filter .submit {
+  width:250px;
+  float:left;
+  clear:none;
+  margin-right:10px;
+}
+.filter .submit {
+  width:250px;
+  clear:right;
+  margin-top:20px;
+}
+.filter .input .full {
+  width:240px;
+}
+.filter .input.date {
+}
+.filter {
+  padding:0;
+  margin:5px 20px 0 0;
+  font-size:0.9em;
+}
+.filter fieldset {
+  margin:5px 20px 0 0;
+  padding:0;
+  border:0;
+}
+.filter fieldset legend {
+  margin:0;
+  padding:0;
+}
+.filter fieldset a.toggle {
+  padding-left:20px;  
+  background:transparent url(/img/layout/widget_open.png) left center no-repeat;
+}
+.filter fieldset a.toggle.closed {
+  background:transparent url(/img/layout/widget_close.png) left center no-repeat;
+}
+.filter fieldset div {
+  background:#FAFAFA;
+  border:1px solid #EEE;
+  margin:5px 20px 5px 0;
+  padding:2px 10px 5px 5px;
+  float:left;
+}
+.filter fieldset div > div,
+.filter .submit {
+  border:0;
+  margin:0;
+}
+*/
+/* index 
+.index_wrapper {
+  padding:0;
+  margin:10px 0 5px 2px;
+}
+.index_wrapper table {
+  padding:0;
+  margin:0;
+  border-left:0;
+}
+.index_wrapper tr {
+  border:0;
+  padding:0;
+  margin:0;
+}
+.index_wrapper tr td {
+  padding:3px 2px 2px 2px;
+  border:0;
+  border-top:1px solid #d6d6d6;
+  border-bottom:1px solid #d6d6d6;
+  background:#EFEFEF;
+}
+.index_wrapper .leaf {
+  background:transparent;
+}
+.index_wrapper .grab {
+  width:5px;
+}
+.index_wrapper .leaf .fold {
+    background:transparent url(../img/layout/folded.png) 5px 2px no-repeat;
+}
+.index_wrapper table a.toggle {
+  width:16px;
+  height:16px;
+  display:block;
+  background:transparent url(../img/layout/plus.png) 0 0 no-repeat;
+}
+.index_wrapper table a.toggle.open {
+  background:transparent url(../img/layout/minus.png) 0 0 no-repeat;
+}
+.index_wrapper th {
+  text-align:left;
+  padding:4px 2px;
+  border:0;
+  background:transparent;
+}
+.index_wrapper th.title a {
+  padding-left:45px;
+  padding-right:5px;
+  background-position:25px center;
+}
+.index_wrapper th.title a + a {
+  padding-left:0;
+  padding-right:20px;
+  background-position:right center;
+}
+.index_wrapper th a {
+  display:inline;
+}
+.index_wrapper td {
+  text-align:left;
+}
+.index_wrapper tr.leaf td {
+  background:#FFF;
+  border:0;
+  border-top:1px dotted #EFEFEF;
+}
+
+.index_wrapper .selection,
+.index_wrapper .status,
+.index_wrapper .fold,
+.index_wrapper .comments,
+.index_wrapper .attachments,
+.index_wrapper .favorites {
+  width:16px;
+}
+.index_wrapper .notifications {
+  width:40px;
+  padding-left:10px;
+  padding-right:5px;
+}
+.index_wrapper .date {
+  text-align:right;
+  width:120px;
+  padding-right:5px;
+}
+.index_wrapper .grab a {
+  width:6px;
+  height:16px;
+  display:block;
+  background:transparent url(../img/layout/grab.png) 0 2px no-repeat;
+}
+.index_wrapper .selection {
+  margin:0;
+  padding:0;
+  padding-left:3px;
+}
+.index_wrapper th input[type=checkbox] {
+  margin:0;
+  padding:0;
+  margin-left:2px;
+}
+*/
+
+/* Icons 
+td.actions a.with_icon, 
+div.actions a.with_icon{
+  padding: 7px 10px 5px 25px;
+  background-repeat:no-repeat;
+}
+div.actions a {
+  float:left;
+  text-decoration:none;
+}*/
+
+/* Quicklinks */
+.view.icons ul {
+  float:left;
+  width:100%;
+  padding:10px 0;
+  margin:0;
+}
+.view.icons ul li {
+  float:left;
+  list-style:none;
+  width:100px;
+  text-align:center;
+  margin-bottom:10px;
+}
+.view.icons ul li a {
+  text-align:center;
+  padding:0;
+}
+.view.icons ul li a img {
+  display:inline-block;
+  border:1px solid #CCC;
+  clear:both;
+  padding:8px;
+  -moz-border-radius:3px;
+}
+.view.icons ul li a:hover img {
+  border:1px solid #66CC00;
+}
+/* faq 
+ul.faq, ul.faq li, ul.faq li h3 {
+  padding:0;
+  margin:0;
+}
+ul.faq li {
+  list-style-type:none;
+  font-size:1.1em;
+  margin:4px 0;
+}
+ul.faq li a.toggle {
+  display:block;
+  background:#EFEFEF;
+  -moz-border-radius:5px;
+}
+ul.faq li a.closed {
+  display:block;
+}
+ul.faq li p, ul.faq li a.toggle, ul.faq li h3 {
+  padding:5px 10px;
+}*/

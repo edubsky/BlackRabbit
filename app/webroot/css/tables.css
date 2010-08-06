@@ -1,0 +1,78 @@
+/* Tables */
+table {
+  background:#fff;
+  border:1px solid #ccc;
+  border-right:0;
+  clear:both;
+  color:#333;
+  margin-bottom:10px;
+  width:100%;
+  border-collapse:collapse;
+}
+table tr th {
+  /*background:#f2f2f2;*/
+  border:1px solid #bbb;
+  text-align:center;
+  background: #d4d2d2 url(../img/layout/bg_table_header.png) right 0 repeat-x;
+}
+table tr td {
+  background:#fff;
+  border:1px solid #ccc;
+  padding:4px;
+  text-align:center;
+  vertical-align:top;
+}
+table tr th a {
+  display:block;
+  padding:2px 4px 2px 6px;
+  text-decoration:none;
+}
+table tr th a {
+  padding-right:20px;
+  background:transparent url(../img/layout/tablesort2.png) right center no-repeat;
+}
+table tr th a:hover {
+  background:transparent url(../img/layout/tablesort.png) right center no-repeat;
+}
+table tr th a.asc:hover,
+table tr th a.asc {
+  padding-right:20px;
+  background: #d4d2d2 url(../img/layout/tablesort_asc.png) right center no-repeat;
+}
+table tr th a.desc:hover,
+table tr th a.desc {
+  padding-right:20px;
+  background: #d4d2d2 url(../img/layout/tablesort_desc.png) right center no-repeat;
+}
+table tr td input[type=checkbox],
+table tr th input[type=checkbox] {
+  margin:2px 2px 2px 2px;
+  padding:0;
+}
+/* generic tiny collumns */
+table .selection,
+table .status,
+table .fold,
+table .comments,
+table .attachments,
+table .favorites{
+  width:16px;
+}
+table .actions,
+table .date,
+table .datetime {
+  width:140px;
+}
+/*
+table .grab a{
+  width:6px;
+  height:16px;
+  display:block;
+  background:transparent url(../img/admin/layout/grab.png) 0 2px no-repeat;
+}
+table .notifications{
+  width:40px;
+  padding-left:10px;
+  padding-right:5px;
+}
+*/

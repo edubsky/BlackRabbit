@@ -1,0 +1,188 @@
+/***********************************************************************************
+ * Header
+ ***********************************************************************************/
+#header {
+  float:left;
+  padding:0px;
+  background: transparent url(../img/layout/shadow.png) center 79px repeat-x;
+  width:100%;
+}
+#header h1 {
+  padding:0px 0px 5px 15px;
+  margin-top:5px;
+  font-size:19px;
+  color:#FFF;
+  float:left;
+}
+#header h1 a{
+  display:block;
+  width:170px;
+  height:40px;
+  background: url(../img/layout/logo.jpg) center center no-repeat;
+}
+#header a.logo span{
+  display:none;
+}
+#header a {
+  color:#FFF;
+  text-decoration:none;
+}
+#header a:hover {
+  color:#ee6600;
+}
+#header a.selected {
+  color:#006600;
+}
+/* use badge */
+#header #userbadge {
+  float:right;
+  margin-right:20px;
+  background:#1d791d;
+  color:white;
+  font-size:1.1em;
+  padding:10px 20px 8px 20px;
+  -moz-border-radius:0 0 5px 5px;
+}
+#header #userbadge p{
+  float:left;
+  margin-right:3px;
+}
+#header #userbadge span {
+  float:left;
+}
+/* top navigation */
+#top_navigation {
+  clear:both;
+  float:left;
+  padding:8px 0 5px 10px;
+  width:auto;
+}
+#top_navigation li {
+  display:inline;
+  margin:0 5px 0px 0;
+}
+#top_navigation li a {
+  font-size:1.2em;
+  color:#FFF;
+  background:#1d791d;
+  padding:6px 10px;
+  -moz-border-radius:3px 3px 0 0;
+  border-radius:3px 3px 0 0;
+}
+#top_navigation li a.selected, #top_navigation li a.selected:hover {
+  background:#FFF;
+  color:#003300;
+}
+#top_navigation li a:hover {
+  background:#196119;
+}
+/* selector */
+ul.selector {
+  z-index:6;
+  float:left;
+  margin:0px 0px 0px 10px;
+  list-style-type:none;
+}
+ul.selector li {
+  float:left;
+  margin:0px 0px 0px 5px;
+  padding:0px 0px 2px 0px;
+}
+ul.selector li .item {
+  padding:0;
+  margin:0;
+}
+ul.selector li .item a {
+  padding:0px 0px 8px 8px;
+  color:white;
+  font-size:1em;
+  border:0;
+  margin:0;
+}
+ul.selector li .item a.trigger {
+  margin:0;
+  padding:0;
+  margin-top:-4px;
+}
+ul.selector li .item a img {
+  padding:4px 4px 3px 4px;
+  vertical-align:text-bottom;
+  border:1px solid #62bc0b;
+}
+ul.selector li .item a.trigger:hover img {
+  border:1px outset #66CC00;
+}
+ul.selector li ul.subitem {
+  position:absolute;
+  visibility:hidden;  
+  list-style-type:none;
+  display:block;
+  background:#FFF;
+  border:1px solid #66CC00;
+  z-index:5;
+  width:auto;
+  border-width:0 1px 0 1px;
+  padding:0;
+  margin:5px 0 0 25px;
+}
+ul.selector li ul.subitem li {
+  float:none;
+  position:relative;
+  background:transparent;
+  margin:0;
+  padding:0;
+}
+ul.selector li ul.subitem li a {
+  display:block;
+  border-top:0;
+  padding:5px;
+  margin:0;
+  font-size:1em;
+  font-weight:normal;
+  border-bottom:1px solid #66CC00;
+}
+/* country selector :uses selector */
+#project_selector {
+  float:left;
+  margin:15px 0 0 0;
+}
+ul.selector {
+  float:left;
+  font-size:1.5em;
+}
+.selector {
+  font-size:1.3em;
+}
+.selector .selected_item {
+  border-left:2px solid #FFF;
+  padding-left:.5em;
+}
+.selector .sub_item {
+  margin:5px 0 0 15px;
+  width:200px;
+}
+.selector .sub_item a {
+  color:#66CC00;
+}
+.selector .sub_item a:hover {
+  color:#006600;
+}
+/* User badge */
+#userbadge span a.preferences {
+  padding:0 8px 0 0;
+}
+#userbadge span a.with_icon.preferences {
+  padding-left:28px;
+  background-position: 5px center;
+}
+#userbadge a.logout {	
+  padding:0 0 0 5px;
+}
+#userbadge a.with_icon.logout {
+  padding-right:25px;
+  background-position: right center;
+}
+#userbadge a.with_icon.logout:hover {
+  color:#CC6600;
+  background-position: right center;
+}

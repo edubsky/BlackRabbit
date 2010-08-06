@@ -1,0 +1,154 @@
+/* iconic visual polution */
+span.with_icon,
+a.with_icon {
+  padding-left:25px;
+  background-repeat:no-repeat;
+  background-position: 2px center;
+  background-color: transparent;
+}
+.with_icon.add {
+  background-image:url(../img/icons/S/add.png);
+}
+.with_icon.add.disabled {
+  background-image:url(../img/icons/S/add_disabled.png);
+}
+.with_icon.view {
+  background-image:url(../img/icons/S/view.png);
+}
+.with_icon.edit {
+  background-image:url(../img/icons/S/edit.png);
+}
+.with_icon.delete {
+  background-image:url(../img/icons/S/delete.png);
+}
+.with_icon.index, 
+.with_icon.list {
+  background-image:url(../img/icons/S/index.png);
+}
+.with_icon.undo {
+  background-image:url(../img/icons/S/undo.png);
+}
+.with_icon.back,
+.with_icon.home {
+  background-image:url(../img/icons/S/arrow_undo.png);
+}
+.with_icon.print {
+  background-image:url(../img/icons/S/printer.png);
+}
+.with_icon.bookmark {
+  background-image:url(../img/icons/S/tag_blue_add.png);
+}
+.with_icon.help {
+  background-image:url(../img/icons/S/help.png);
+}
+.with_icon.preferences {
+  background-image:url(../img/icons/S/profile.png);
+}
+.with_icon.close {
+  background-image:url(../img/icons/S/close.png);
+}
+.with_icon.logout {
+  background-image:url(../img/icons/S/door_open.png);
+}
+.with_icon.logout:hover {
+  background-image:url(../img/icons/S/door_in.png);
+}
+.with_icon.increaseFont {
+  background-image:url(../img/icons/S/increase_font.png);
+}
+.with_icon.decreaseFont {
+  background-image:url(../img/icons/S/decrease_font.png);
+}
+.with_icon.restore {
+  background-image:url(../img/icons/S/bin.png);
+}
+/*
+.with_icon.export {
+  background-image:url(../img/icons/S/export.png);
+}
+.with_icon.exportall {
+  background-image:url(../img/icons/S/export.png);
+}
+.with_icon.import {
+  background-image:url(../img/icons/S/import.png);
+}
+.with_icon.merge {
+  background-image:url(../img/icons/S/merge.png);
+}
+.with_icon.tree {
+  background-image:url(../img/icons/S/tree.png);
+}
+.with_icon.user_add {
+  background-image:url(../img/icons/S/user_add.png);
+}
+.with_icon.user_edit {
+  background-image:url(../img/icons/S/user_edit.png);
+}
+.with_icon.user_delete {
+  background-image:url(../img/icons/S/user_delete.png);
+}*/
+/*
+.with_icon {
+  padding-left:30px;
+  background-image-position:5px center;
+  background-image-repeat:no-repeat;
+}
+.with_icon.profile {
+  background-image:url(../img/icons/S/profile.png);
+}
+.with_icon.transactions {
+  background-image:url(../img/icons/S/arrow_rotate_clockwise.png);
+}
+.with_icon.transaction.up {
+  background-image:url(../img/icons/S/arrow_right.png);
+}
+.with_icon.transaction.down {
+  background-image:url(../img/icons/S/arrow_left.png);
+}
+.with_icon.gifts,
+.with_icon.gift.creditcard {
+  background-image:url(../img/icons/S/creditcards.png);
+}
+.with_icon.gift.cash.small {
+  background-image:url(../img/icons/S/coins.png);
+}
+.with_icon.gift.cash.big {
+  background-image:url(../img/icons/S/money.png);
+}
+.with_icon.increaseFont {
+  background-image:url(../img/icons/S/increase_font.png);
+}
+.with_icon.decreaseFont {
+  background-image:url(../img/icons/S/decrease_font.png);
+}
+.with_icon.info,
+.with_icon.information {
+  background-image:url(../img/icons/S/information.png);
+}
+.with_icon.export,
+.with_icon.exports {
+  background-image:url(../img/icons/S/export.png);
+}
+.with_icon.appeals,
+.with_icon.appeal {
+  background-image:url(../img/icons/S/edit.png);
+}
+.with_icon.user {
+  background-image:url(../img/icons/S/user.png);
+}
+.with_icon.users {
+  background-image:url(../img/icons/S/group.png);
+}
+.with_icon.role,
+.with_icon.roles {
+  background-image:url(../img/icons/S/shield.png);
+}
+.with_icon.office,
+.with_icon.offices {
+  background-image:url(../img/icons/S/house.png);
+}
+.with_icon.bug,
+.with_icon.bugs {
+  background-image:url(../img/icons/S/bug.png);
+}
+*/

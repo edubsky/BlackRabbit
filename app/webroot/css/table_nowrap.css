@@ -1,0 +1,9 @@
+/* No wrap & hidden overflow for tables */
+table.nowrap {
+  table-layout:fixed;
+}
+table.nowrap tr td {
+  /*text-overflow: ellipsis; QUIRKY! */
+  overflow:hidden;
+  white-space:nowrap;
+}

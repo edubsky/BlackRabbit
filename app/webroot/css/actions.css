@@ -1,0 +1,64 @@
+/*  Actions  */
+div.actions {
+  float:left;
+  border:1px solid #EEE;
+  width:99.4%;
+  clear:both;
+  margin:5px 0 10px 0;
+  padding:2px;
+  font-size:1.1em;
+}
+div.actions ul {
+  float:left;
+  padding:0;
+  margin:0;
+}
+div.actions h3 {
+  float:left;
+  font-size:1.2em;
+  padding:6px 20px 6px 6px;
+  margin:0 10px 0  0;
+  font-weight:bold;
+  background:#EEE url(../img/layout/bg_arrow.png) right center no-repeat;
+  border:0;
+}
+div.actions li {
+  float:left;
+  list-style-type:none;
+  margin:5px 10px 5px 0;
+  padding:0;
+  white-space:nowrap;
+  border-right:1px dotted #CCC;
+}
+div.actions ul li span.disabled,
+div.actions li a{
+  float:left;
+  list-style-type:none;
+  margin:3px 10px 3px 0;
+}
+div.actions li.empty {
+  border:0;
+  margin-top:8px;
+}
+div.actions ul li .submit {
+  float:left;
+  margin:0;
+  padding:0;
+  width:auto;
+  min-width:0;
+}
+div.actions ul li .submit input[type=submit] {
+  background:transparent;
+  font-size:0.8em;
+  margin:0;
+  border:0;
+  min-width:0;
+  padding: 4px 10px 4px 20px;
+  width:auto;
+  font-size:1em;
+  color:#003300;
+  font-weight:bold;
+}
+div.actions ul li .submit input[type=submit]:hover {
+  color:#ee6600;
+}

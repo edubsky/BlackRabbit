@@ -1,0 +1,77 @@
+/* Paging */
+.paging{
+  background:#fff;
+  margin:0 0 5px 0;
+  float:left;
+  clear:both;
+  width:100%;
+}
+.paging .counter{
+  color:#777;
+  margin:0 0 5px 10px;
+  padding:5px 0px;
+  float:left;
+}
+.paging .pages{
+  float:left;
+  padding-left:10px;
+}
+.paging .pages *{
+  float:left;
+  font-size:1em;
+  margin-right:2px;
+}
+.paging .pages .number,
+.paging .pages .prev,
+.paging .pages .next,
+.paging .pages .disabled,
+.paging .pages .current{
+  margin:0;
+  padding:4px 8px;
+  margin-right:4px;
+  text-align:center
+}
+.paging .pages .disabled,
+.paging .pages .prev,
+.paging .pages .next{
+  border:1px solid #CCC;
+  background:#EFEFEF;
+  min-width:60px;
+}
+.paging .pages .disabled,
+.paging .pages .current{
+  color:#777;
+  border:1px solid #CCC;
+  font-weight:bold;
+  background:#FFF;
+}
+.paging .pages .current{
+  color:#ee6600;
+}
+.paging .pages .number{
+  padding:4px 8px;
+  margin-right:2px;
+  min-width:10px;
+  border:1px solid #CCC;
+  background:#EFEFEF;
+}
+.paging .limit{
+  color:#333;
+  margin:0 0 5px 10px;
+  padding:5px 0px;
+  float:left;
+  clear:right;
+}
+.paging .limit span{
+  padding-right:3px;
+}
+.paging .limit a{
+  border:1px solid #FFF;
+  background:#FFF;
+  margin:5px 0 0px 0px;
+  padding:4px 4px;
+}
+.paging .limit a.current{
+  border:1px solid #CCC;
+  background:#FFF;
+}

@@ -1,0 +1,125 @@
+/***********************************************************************************
+ * Content
+ ***********************************************************************************/
+form {
+  clear:both;
+  margin:0;
+  padding:0;
+}
+fieldset {
+  border:1px solid #EEE;
+  margin-top:10px;
+  padding:10px 20px 20px 15px;
+}
+fieldset legend {
+  background:#fff;
+  font-size:1.3em;
+  font-weight:bold;
+  padding:0 10px;
+}
+fieldset fieldset {
+  margin-top:0px;
+  margin-bottom:10px;
+}
+fieldset fieldset legend {
+  font-size:120%;
+  font-weight:normal;
+}
+fieldset fieldset div {
+  clear:left;
+  margin:0 10px;
+}
+form div.input {
+  color:#444;
+}
+form div.required {
+  color:#333;
+}
+form span.required {
+  color:red;
+  font-weight:bold;
+}
+/* generic input stuffs */
+label {
+  display:block;
+  font-size:1.2em;
+  padding:5px 2px;
+  font-weight:bold;
+}
+input, textarea {
+  clear:both;
+  font-size:140%;
+  font-family:'Helvetica Neue', helvetica, verdana, sans-serif;
+  /*font-family:"frutiger linotype", "lucida grande", "verdana", sans-serif;*/
+  padding:2px;
+  width:99%;
+}
+select {
+  clear:both;
+  font-size:120%;
+  vertical-align:text-bottom;
+}
+select[multiple=multiple] {
+  width:100%;
+}
+option {
+  font-size:120%;
+  padding:0 3px;
+}
+input[type=checkbox] {
+  clear:left;
+  float:left;
+  width:auto;
+  margin:8px 5px 0 2px;
+}
+label input.checkbox {
+  padding:0;
+  font-size:1.3em;
+}
+input[type=radio] {
+  float:left;
+  width:auto;
+  margin:0 3px 7px 0;
+}
+div.radio label {
+  margin:0 0 6px 20px;
+}
+input[type=submit] {
+  display:inline;
+  font-size:110%;
+  padding:2px 5px;
+  width:auto;
+  vertical-align:bottom;
+}
+/* custom inputs */
+.content .submit input {  
+  min-width:150px;
+  font-size:1.3em;
+  cursor:pointer;
+  margin-top:10px;
+}
+.content .submit.cancel a{  
+  border:1px solid #CCC;
+  font-size:1.2em;
+  min-width:150px;
+  margin:10px 10px 0px 0px;
+  float:left;
+  text-align:center;
+  clear:none;
+  padding:5px 5px;
+  width:auto;
+  vertical-align:bottom;
+  -moz-border-radius:5px;
+}
+/* custom messages */
+p.notice strong{
+  font-size:1em;
+}
+form p.notice{
+  font-size:1.1em;
+  border:0;
+  background:transparent;
+  padding:0;
+  margin:5px 5px 5px 5px;
+  color:#777;
+}

@@ -1,0 +1,18 @@
+/*cake stuffs */
+.cake-sql-log{
+  margin:0.5%;
+  width:99%;
+}
+.cake-sql-log th,
+.cake-sql-log td {
+  text-align:center;
+  padding:5px;
+}
+pre{
+  font-size:1.2em;
+}
+/* Related */
+div.related {
+  clear:both;
+  display:block;
+}
