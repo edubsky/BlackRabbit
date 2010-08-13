@@ -25,6 +25,7 @@ class User extends AppModel {
   var $hasMany = array(
    // 'AuthKey' => array('dependent' => true),
    // 'ReportsUser' => array('dependent' => true)
+   'UserConfig'
   );
 
   /**
@@ -117,16 +118,18 @@ class User extends AppModel {
       $user = $_this->find('first',$_this->__getGuestUserFindConditions());
     }
 
-    Assert::true(Common::isUuid($user['User']['id']), '500');
-    Configure::write('User', $user);
-    Assert::identical(Configure::read('User'), $user);
-
-    $Session = Common::getComponent('Session');
-    Assert::true($Session->write('User', $user));
-
-    if ($generateAuthCookie) {
-      $Cookie = Common::getComponent('Cookie');
-      $Cookie->write('Auth.name', $user['User']['login'], false, Configure::read('App.Cookie.Life'));
+    if(!Common::isUuid($user['User']['id'])){
+      //TODO Error 500
+    } else {
+      Configure::write('User', $user);
+  
+      $Session = Common::getComponent('Session');
+      $Session->write('User', $user);
+  
+      if ($generateAuthCookie) {
+        $Cookie = Common::getComponent('Cookie');
+        $Cookie->write('Auth.name', $user['User']['login'], false, Configure::read('App.Cookie.Life'));
+      }
     }
   }
 

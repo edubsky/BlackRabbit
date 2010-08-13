@@ -27,48 +27,62 @@ p.success {
   background:green;
   color:#fff;
 }
+/* Message */
+.message{
+  font-size:1.1em;
+  padding:0;
+  margin:0;
+}
+/* close button */
+.message a.close{
+  float:right;
+  color:#cc0000;
+}
+.message a.close.with_icon{
+  background-position: right 13px ;
+  margin-right:15px;
+}
+/* dialog box style */
+.message.dialog {
+  position: absolute;
+  margin-top:12.5%;
+  margin-left:37.5%;
+  width:25%;
+  z-index: 9999;
+}
+.message.dialog h3{
+  padding:15px 15px 0px 12px;
+  font-weight:bold;
+}
+.message.dialog p{
+  padding:0px 15px 20px 15px;
+}
+.message.dialog a.close.with_icon{
+  padding:12px 22px 0 0;
+}
+/* Inline style */
+.message.inline{
+  with:auto;
+  border-top:0;
+  padding:5px 0;
+  margin:0;
+}
+.message.inline p{
+  display:inline;
+}
+.message.inline h3{
+  display:inline;
+  font-weight:bold;
+}
+.message.inline a.close.with_icon{
+  padding:0px 22px 0 0;
+  background-position: right 1px;
+}
 /* Message in lists */
 ul.messages{
   list-style-type: none;
   padding:0;
   margin:0;
-}
-ul.messages.dialog_box {
-  position: absolute;
-  margin-top:12.5%;
-  margin-left:37.5%;
-  width:25%;
-}
-ul.messages.dialog_box h3{
-  padding:15px 15px 0px 12px;
-}
-ul.messages.dialog_box p{
-  padding:0px 15px 20px 15px;
-}
-ul.messages.dialog_box a.close{
-  float:right;
-  color:#cc0000;
-}
-ul.messages.dialog_box a.with_icon.close{
-  float:right;
-  padding:12px 22px 0 0;
-  background-position: right 13px ;
-  margin-right:15px;
-}
-ul.messages.dialog_box .message{
-  border-top:1px solid #cc0000 /*#FFCC00*/;
-}
-ul.messages .message{
-  font-size:1.1em;
-  padding:0;
-  margin:0;
-  border-top:0;
-}
-ul.messages .message.notice{
-}
-ul.messages .message.error{
-}
-ul.messages .message.warning{
 }
 /* hubble bubble */
 .bubble {

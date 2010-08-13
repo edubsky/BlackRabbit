@@ -5,6 +5,7 @@ a.with_icon {
   background-repeat:no-repeat;
   background-position: 2px center;
   background-color: transparent;
+  background-image:url(../img/icons/S/missing.png);
 }
 .with_icon.add {
   background-image:url(../img/icons/S/add.png);
@@ -53,14 +54,17 @@ a.with_icon {
 .with_icon.logout:hover {
   background-image:url(../img/icons/S/door_in.png);
 }
-.with_icon.increaseFont {
+.with_icon.fontResize.increase {
   background-image:url(../img/icons/S/increase_font.png);
 }
-.with_icon.decreaseFont {
+.with_icon.fontResize.decrease {
   background-image:url(../img/icons/S/decrease_font.png);
 }
 .with_icon.restore {
   background-image:url(../img/icons/S/bin.png);
+}
+.with_icon.favorite {
+  background-image:url(../img/icons/S/rate.png);
 }
 /*
 .with_icon.export {

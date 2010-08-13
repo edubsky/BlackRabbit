@@ -4,11 +4,11 @@
 #header {
   float:left;
   padding:0px;
-  background: transparent url(../img/layout/shadow.png) center 79px repeat-x;
+  background: transparent url(../img/layout/shadow_x.png) center 78px repeat-x;
   width:100%;
 }
 #header h1 {
-  padding:0px 0px 5px 15px;
+  padding:0px 0px 5px 1%;
   margin-top:5px;
   font-size:19px;
   color:#FFF;
@@ -36,7 +36,7 @@
 /* use badge */
 #header #userbadge {
   float:right;
-  margin-right:20px;
+  margin-right:1%;
   background:#1d791d;
   color:white;
   font-size:1.1em;
@@ -51,17 +51,18 @@
   float:left;
 }
 /* top navigation */
-#top_navigation {
+#header #top_navigation {
   clear:both;
   float:left;
-  padding:8px 0 5px 10px;
+  padding:8px 0 5px 0px;
   width:auto;
+  margin:0 0 0 1.5%;
 }
-#top_navigation li {
+#header #top_navigation li {
   display:inline;
   margin:0 5px 0px 0;
 }
-#top_navigation li a {
+#header #top_navigation li a {
   font-size:1.2em;
   color:#FFF;
   background:#1d791d;
@@ -69,50 +70,55 @@
   -moz-border-radius:3px 3px 0 0;
   border-radius:3px 3px 0 0;
 }
-#top_navigation li a.selected, #top_navigation li a.selected:hover {
+#header #top_navigation li a.unselected{
+  padding-bottom:1px;
+  border-bottom:5px solid #116411;
+}
+#header #top_navigation li a.selected, 
+#header #top_navigation li a.selected:hover {
   background:#FFF;
   color:#003300;
 }
-#top_navigation li a:hover {
+#header #top_navigation li a:hover {
   background:#196119;
 }
 /* selector */
-ul.selector {
+#header ul.selector {
   z-index:6;
   float:left;
   margin:0px 0px 0px 10px;
   list-style-type:none;
 }
-ul.selector li {
+#header ul.selector li {
   float:left;
   margin:0px 0px 0px 5px;
   padding:0px 0px 2px 0px;
 }
-ul.selector li .item {
+#header ul.selector li .item {
   padding:0;
   margin:0;
 }
-ul.selector li .item a {
+#header ul.selector li .item a {
   padding:0px 0px 8px 8px;
   color:white;
   font-size:1em;
   border:0;
   margin:0;
 }
-ul.selector li .item a.trigger {
+#header ul.selector li .item a.trigger {
   margin:0;
   padding:0;
   margin-top:-4px;
 }
-ul.selector li .item a img {
+#header ul.selector li .item a img {
   padding:4px 4px 3px 4px;
   vertical-align:text-bottom;
   border:1px solid #62bc0b;
 }
-ul.selector li .item a.trigger:hover img {
+#header ul.selector li .item a.trigger:hover img {
   border:1px outset #66CC00;
 }
-ul.selector li ul.subitem {
+#header ul.selector li ul.subitem {
   position:absolute;
   visibility:hidden;  
   list-style-type:none;
@@ -125,14 +131,14 @@ ul.selector li ul.subitem {
   padding:0;
   margin:5px 0 0 25px;
 }
-ul.selector li ul.subitem li {
+#header ul.selector li ul.subitem li {
   float:none;
   position:relative;
   background:transparent;
   margin:0;
   padding:0;
 }
-ul.selector li ul.subitem li a {
+#header ul.selector li ul.subitem li a {
   display:block;
   border-top:0;
   padding:5px;
@@ -142,47 +148,47 @@ ul.selector li ul.subitem li a {
   border-bottom:1px solid #66CC00;
 }
 /* country selector :uses selector */
-#project_selector {
+#header #project_selector {
   float:left;
   margin:15px 0 0 0;
 }
-ul.selector {
+#header ul.selector {
   float:left;
   font-size:1.5em;
 }
-.selector {
+#header .selector {
   font-size:1.3em;
 }
-.selector .selected_item {
+#header .selector .selected_item {
   border-left:2px solid #FFF;
   padding-left:.5em;
 }
-.selector .sub_item {
+#header .selector .sub_item {
   margin:5px 0 0 15px;
   width:200px;
 }
-.selector .sub_item a {
+#header .selector .sub_item a {
   color:#66CC00;
 }
-.selector .sub_item a:hover {
+#header .selector .sub_item a:hover {
   color:#006600;
 }
 /* User badge */
-#userbadge span a.preferences {
+#header #userbadge span a.preferences {
   padding:0 8px 0 0;
 }
-#userbadge span a.with_icon.preferences {
+#header #userbadge span a.with_icon.preferences {
   padding-left:28px;
   background-position: 5px center;
 }
-#userbadge a.logout {	
+#header #userbadge a.logout {	
   padding:0 0 0 5px;
 }
-#userbadge a.with_icon.logout {
+#header #userbadge a.with_icon.logout {
   padding-right:25px;
   background-position: right center;
 }
-#userbadge a.with_icon.logout:hover {
+#header #userbadge a.with_icon.logout:hover {
   color:#CC6600;
   background-position: right center;
 }

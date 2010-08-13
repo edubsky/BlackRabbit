@@ -13,7 +13,6 @@
 <div class="content users login">
 <?php echo $content_for_layout; ?>
 </div>
-<?php echo $this->element('sidebar'); ?>
 </div>
 <?php echo $this->element('footer'); ?>
 </div>

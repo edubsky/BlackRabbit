@@ -8,5 +8,6 @@
  */
 ?>
 <div id="footer">
-  <p><strong><?php e(Configure::read('App.copyright'));?></strong>  &#149; <?php e(Configure::read('App.version.number')); e(' '.Configure::read('App.version.name'));?></p>
+  <p class="copyright"><strong><?php e(Configure::read('App.copyright'));?></strong>&nbsp;&nbsp;&#149;</p>
+  <p class="version"><?php e(Configure::read('App.version.number')); e(' '.Configure::read('App.version.name'));?></p>
 </div>

@@ -11,7 +11,8 @@
   $tabindex = 0;
 ?>
   <h2><?php echo $title_for_layout ?></h2>
-<?php echo $this->element('navigation', array('id' => 'authentication')); ?>
+<?php echo $this->element('navigation', array('id' => 'sub.authentication')); ?>
+  <div class="form_wrapper"><div class="form_wrapper2">
   <?php echo $this->MyForm->create('User', array('action' => 'forgot_password'))."\n"; ?>
 <?php if ($session->check('Message.auth')): ?>
     <p class="error"><strong><?php echo __('Error',true); ?></strong>: <?php echo $session->read('Message.auth.message'); ?></p>
@@ -29,3 +30,4 @@
        'tabindex' => ++$tabindex
      )); ?>
   <?php echo $this->MyForm->end(); ?>
+  </div></div>

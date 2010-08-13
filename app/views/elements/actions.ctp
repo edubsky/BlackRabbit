@@ -16,7 +16,7 @@
   $delimiter = isset($delimiter) ? $delimiter : ' | ';
   $shortName = isset($shortName) ? $shortName : false;
   $useIcons = (isset($useIcons) && !$useIcons) ? '' : $this->DisplaySettings->useIcons();
-  $showDisabled = isset($showDisabled) ? $showDisabled : true;
+  //$showDisabled = isset($showDisabled) ? $showDisabled : $this->DisplaySettings->showDisabledLinks();
   
   // Set up the context and get the actions list
   $context = isset($context) ? $context : 'default';

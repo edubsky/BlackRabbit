@@ -6,6 +6,8 @@
  * @author      remy.bertot@greenpeace.org
  * @package     app.views.elements.css_includes.ctp
  */
+Configure::load('includes' . DS . 'css'); // css inclusion rules
+
 $controller = @Inflector::camelize(@$this->params['controller']);
 $action = @$this->params['action'];
 $allcss = Configure::read('CssIncludes');

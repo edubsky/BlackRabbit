@@ -57,7 +57,7 @@
 /* menu */
 .content .menu {
   padding:10px 10px 5px 0px;
-  margin:5px 10px 5px 0px;
+  margin:5px 0px 5px 0px;
   width:99%;
   float:left;
   clear:both;
@@ -76,7 +76,8 @@
   -moz-border-radius:3px 3px 0 0;
   border:1px solid #CCC;
 }
-.content .menu.with_tabs li a.selected, .content .menu li a.selected:hover {
+.content .menu.with_tabs li a.selected, 
+.content .menu li a.selected:hover {
   background:#FFF;
   color:#003300;
   border-bottom:1px solid #FFF;
@@ -90,8 +91,6 @@
 .content .menu.with_tabs.before_form {
   margin-bottom:10px;
 }
-
-
 /* filter 
 .filter {
   float:left;

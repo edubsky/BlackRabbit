@@ -7,6 +7,7 @@
  * @package     app.views.elements.js_includes.ctp
  */
 if(!isset($javascript)) return; // helper required
+Configure::load('includes' . DS . 'js');  // javascript inclusion rules
 
 // The context
 $controller = @Inflector::camelize(@$this->params['controller']);

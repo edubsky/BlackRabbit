@@ -73,7 +73,7 @@ class AppController extends Controller {
    */
   function beforeRender(){
     if($this->name == 'CakeError' && !isset($this->Auth->user)) {
-      $this->layout = 'login';
+      $this->layout = 'error';
     }
     parent::beforeRender();
   }

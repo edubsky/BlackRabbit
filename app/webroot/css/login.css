@@ -1,4 +1,78 @@
 /* Login screen */
-.content .menu.with_tabs {
-  margin-bottom:10px;
+#header,
+#header h1{
+  padding:0;
+  margin:0;
+}
+#container{
+  width:350px;
+  margin:auto;
+  margin-top:25px;
+}
+#content_wrapper{
+  float:left;
+  width:372px;
+}
+.content.users .menu.with_tabs{
+  float:left;
+  margin:0;
+  border:0;
+}
+.content.users.login{
+  margin:0;
+  padding-top:0;
+}
+.content.users .form_wrapper{
+  float:left;
+  width:373px;
+  background: transparent url(../img/layout/shadow_y.png) 0 2px repeat;	
+}
+.content.users .form_wrapper2{
+  margin-top:-2px;
+  float:left;
+  background:#FFF;
+  padding:5px 10px 10px 10px;
+  margin:0;
+}
+.content.users.login .menu.with_tabs{
+  float:left;  
+  width:360px;
+  margin-left:3px;
+  background: transparent url(../img/layout/shadow_x.png) 0 32px repeat-x;	 
+}
+.content.users.login .menu.with_tabs li a{
+  border:0;
+  font-size:1.2em;
+  padding-left:16px;
+  padding-right:16px;
+}
+.content.users.login .menu.with_tabs li a.unselected{
+  background:#1d791d;
+  border-bottom:5px solid #116411;
+  padding-bottom:1px;
+  color:#FFF;
+}
+.content.users.login .menu.with_tabs li a.unselected:hover{
+  background:#1d791d;
+  border-bottom:5px solid #116411;
+  color:#ee6600;
+}
+.content.users.login h2{
+  display:none;
+}
+.content.users.login form input[type=submit]{
+  width:350px;
+  font-weight:bold;
+}
+#footer{
+  float:left;
+}
+#footer p{
+  float:left;
+  width:350px;
+  text-align:center;
+  padding:10px;
+  color:#FFF;
+  margin-left:3px; 
+  background: transparent url(../img/layout/shadow_x.png) 0 -7px repeat-x;	
 }

@@ -42,16 +42,28 @@ class MyHtmlHelper extends HtmlHelper {
   /**
    * Html::link redefinition
    * Don't generate link if disabled in options
+   * Allow wrapping the link in another html tag
    * @param $name
    * @param $url
    * @param $options
    */
-  function link($name,$url,$options){
-    if(isset($options['disabled']) && $options['disabled']){
-      return '<span class="link disabled '.$options['class'].'">'.$name.'</span>';
-    }else{
-      return parent::link($name,$url,$options);
+  function link($title, $url = null, $options = array(), $confirmMessage = false) {
+    $defaultOptions = array(
+      'class' => '',
+      'wrap' => false
+    );
+    $options = am($defaultOptions, $options);
+    if(isset($options['disabled']) && $options['disabled']) {
+      if($this->DisplaySettings->showDisabledLinks()) {
+        $link = '<span class="link disabled '.$options['class'].'">'.$title.'</span>';
+      } else return;
+    } else {
+      $link = parent::link($title,$url,$options,$confirmMessage);
     }
+    if ($options['wrap']) {
+      $link = $this->tag($options['wrap'],$link);
+    }
+    return $link;
   }
 }//_EOF 
 ?>

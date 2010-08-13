@@ -13,15 +13,15 @@ class WidgetsHelper extends Helper {
 
   function header($id,$name,$options) {
 ?>
-   <div class="favorites widget open">
+   <div class="widget">
     <div class="widget_header">
       <h3>
-        <a href="<?php echo Router::url(); ?>" class="toggle open" id="<?php echo $id; ?>">
-          <?php echo $name; ?>
+        <a href="<?php echo Router::url(); ?>" class="toggle open with_icon favorite" id="<?php echo $id; ?>">
+          <span><?php echo $name; ?></span>
         </a>
       </h3>
     </div>
-    <div class="widget_content">
+    <div class="widget_content toggle_wrapper_<?php e($id); ?>">
 <?php
   }
   

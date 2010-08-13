@@ -95,16 +95,16 @@ class DisplaySettingsHelper extends Apphelper {
 
   /**
    * Should we use icons?
-   * @param $return string or bool
+   * @param $return class string or bool
+   * @param $override bool override config with given boolean
    * @return $result boolean
    */
-  function useIcons($return=null){
-    $return = isset($return) ? $return : 'string';
+  function useIcons($return='class',$override=null){
     //TODO test context & user pref
-    $result = Configure::read('App.gui.use_icons');
+    $result = isset($override) ? $override : Configure::read('App.gui.icons.display');
     switch ($return) {
-      case 'string':
-        if($result) return 'with_icon'; // @see icons.css
+      case 'class':
+        if($result) return Configure::read('App.gui.icons.class'); // @see icons.css
         else return '';
       break;
       default:
@@ -155,6 +155,24 @@ class DisplaySettingsHelper extends Apphelper {
    */
   function setViewModes($options){
     $this->viewModeOptions = array_intersect($options,$this->viewModeOptions);
+  }
+  
+  /**
+   * Return the message style (inline or dialog box)
+   * @return string $style
+   */
+  function getMessageStyle(){
+    $style = Configure::Read('App.gui.messages.style');
+    //$style = !isset($style) ? $style : 'inline';
+    return $style;
+  }
+
+  /**
+   * Shall we show link as disabled?
+   * @return bool
+   */
+  function showDisabledLinks(){
+    return Configure::read('App.gui.links.show_disabled');
   }
 }//_EOF
 ?>

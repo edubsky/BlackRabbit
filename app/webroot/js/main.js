@@ -15,7 +15,6 @@ $(function() {
   })
   // a.toggle#id triggers closing/opening of .toggle_wrapper_#id (easy hey?)
   $('a.toggle').click(function() {
-	alert('running');
     if ($('a.toggle#' + $(this).attr("id")).hasClass("closed")) {
       $('a.toggle#' + $(this).attr("id")).addClass("open").removeClass("closed");
       $('a.toggle#' + $(this).attr("id")).parents('.widget').addClass("open").removeClass("closed");

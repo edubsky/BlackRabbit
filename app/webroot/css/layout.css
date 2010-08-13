@@ -6,11 +6,11 @@
   min-width:750px;
 }
 .content_wrapper {
-  position:relative;  /* This fixes the IE7 overflow hidden bug */
+  position:relative; /* This fixes the IE7 overflow hidden bug */
   clear:both;
   float:left;
-  width:100%;      /* width of whole page */
-  overflow:hidden;    /* This chops off any overhanging divs */
+  width:100%;        /* width of whole page */
+  overflow:hidden;   /* This chops off any overhanging divs */
 }
 /* common settings */
 .content_wrapper2 {
@@ -22,39 +22,43 @@
 .sidebar{
   float:left;
   position:relative;
-  padding:0 0 1em 0;
+  padding:0 0 1% 0;
   overflow:hidden;
 }
-/* Right sidebar settings */
+/********************************* 
+ * Sidebar on the right settings 
+ *********************************/
 .with_right_sidebar {
   background:#efefef;    /* right column background colour */
 }
 .with_right_sidebar .content_wrapper2 {
-  right:25%;      /* right column width */
-  background:#fff;    /* left column background colour */
+  right:25%;       /* right column width */
+  background:#fff; /* left column background colour */
 }
 .with_right_sidebar .content {
-  width:72%;      /* left column content width (left column width minus left and right padding) */
-  left:26.5%;      /* (right column width) plus (left column left padding) */
+  width:72%;  /* left column content width (left column width minus left and right padding) */
+  left:26.5%; /* (right column width) plus (left column left padding) */
 }
 .with_right_sidebar .sidebar {
-  width:23%;      /* right column content width (right column width minus left and right padding) */
-  left:29%;      /* (right column width) plus (left column left and right padding) plus (right column left padding) */
+  width:23%; /* right column content width (right column width minus left and right padding) */
+  left:29%;  /* (right column width) plus (left column left and right padding) plus (right column left padding) */
 }
 
-/* Right sidebar settings */
+/********************************* 
+ * Sidebar on the left settings
+ *********************************/
 .with_left_sidebar {
-	background:#fff;	/* content background */
+  background:#fff; /* content background */
 }
 .with_left_sidebar .content_wrapper2 {
-	right:75%;			
-	background:#f4f4f4;	/* sidebar background */
+  right:75%;      
+  background:#f4f4f4; /* sidebar background */
 }
 .with_left_sidebar .content {
-	width:71%;			/* right column content width */
-	left:102%;			/* 100% plus left column left padding */
+  width:71.5%;  /* right column content width */
+  left:101.5%;  /* 100% plus left column left padding */
 }
 .with_left_sidebar .sidebar {
-	width:21%;			/* left column content width (column width minus left and right padding) */
-	left:6%;			/* (right column left and right padding) plus (left column left padding) */
+  width:23%;  /* left column content width (column width minus left and right padding) */
+  left:4.5%;  /* (right column left and right padding) plus (left column left padding) */
 }

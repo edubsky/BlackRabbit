@@ -10,7 +10,7 @@
   float:left;
   color:#777;
   padding:3px 10px 0 0;
-  font-size:0.8em;
+  font-size:1em;
 }
 #display_selector ul {
   float:left;
@@ -18,7 +18,7 @@
   margin:0;
 }
 #display_selector li {
-  font-size:0.8em;
+  font-size:1em;
   list-style-type:none;
   display:inline;
   float:left;
@@ -33,9 +33,6 @@
   font-weight:normal;
   color:#777;
   cursor:default;
-}
-#display_selector li.selected {
-  padding-top:1px;
 }
 /* with_icons */
 #display_selector .with_icon li {
