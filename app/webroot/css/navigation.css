@@ -1,0 +1,73 @@
+/* menu */
+.menu.with_tabs {
+  padding:10px 10px 5px 0px;
+  width:100%;
+  float:left;
+  clear:both;
+}
+.menu.with_tabs li {
+  float:left;
+}
+.menu.with_tabs li a.selected, 
+.menu.with_tabs li a.selected:hover {
+  /*cursor:default;*/
+}
+
+/* top navigation (main menu) */
+.menu.with_tabs.top {
+  padding:8px 0 5px 1%;
+  width:99%;
+}
+.menu.with_tabs.top li a {
+  font-size:1.2em;
+  color:#FFF;
+  background:#1d791d;
+  padding:6px 10px;
+  margin-left:8px;
+}
+.menu.with_tabs.top li a.unselected{
+  padding-bottom:1px;
+  border-bottom:5px solid #116411;
+  background:#1d791d;
+  color:#FFF;
+}
+.menu.with_tabs.top li a.selected, 
+.menu.with_tabs.top li a.selected:hover {
+  background:#FFF;
+  color:#003300;
+}
+.menu.with_tabs.top li a.unselected:hover{
+  background:#1d791d;
+  border-bottom:5px solid #116411;
+  color:#ee6600;
+}
+
+/* sub navigation (content level) */
+.menu.with_tabs.sub {
+  border-bottom:1px solid #CCC;
+  margin-top:3px;
+}
+.menu.with_tabs.sub li a {
+  color:#003300;
+  background:#EFEFEF;
+  border:1px solid #CCC;
+  font-size:1.1em;
+  padding:5px 10px;
+  margin-left:8px;
+}
+.menu.with_tabs.sub li a.selected, 
+.menu.with_tabs.sub li a.selected:hover {
+  background:#FFF;
+  border-bottom:1px solid #FFF;
+}
+.menu.with_tabs.sub li a.unselected{
+}
+.menu.with_tabs.sub li a.unselected:hover{
+  background:#EFEFEF;
+  color:#ee6600;
+}
+/*
+.content .menu.with_tabs.before_form {
+  margin-bottom:10px;
+}
+*/
