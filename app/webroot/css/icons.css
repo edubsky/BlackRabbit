@@ -1,5 +1,6 @@
 /* iconic visual polution */
 span.with_icon,
+p.with_icon,
 a.with_icon {
   padding-left:25px;
   background-repeat:no-repeat;
@@ -63,8 +64,12 @@ a.with_icon {
 .with_icon.restore {
   background-image:url(../img/icons/S/bin.png);
 }
-.with_icon.favorite {
+.with_icon.favorite,
+.with_icon.favorites {
   background-image:url(../img/icons/S/rate.png);
+}
+.with_icon.history{
+  background-image:url(../img/icons/S/time.png);
 }
 /*
 .with_icon.export {

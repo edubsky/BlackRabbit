@@ -32,14 +32,14 @@ if (file_exists($viewFile)) {
 // If development or css compilation disabled
 // Just embed css file independently
 if (Common::isDevelopment() || Configure::read('App.css.compile')) {
-  foreach ($cssIncludes as $media => $cssIncludes2) { 
+  foreach ($cssIncludes as $media => $cssIncludes2) {
     foreach ($cssIncludes2 as $name => $include) {
       echo '  ' . $html->css($name,null,$include) . "\n";
     }
   }
   return;
 } else {
-  // Set the directory for the aggregates 
+  // Set the directory for the aggregates
   // based on the git version reset when changes
   $gitVersion = Common::GitVersion();
   if (!is_dir(CSS . 'aggregate' . DS . $gitVersion)) {
@@ -47,19 +47,19 @@ if (Common::isDevelopment() || Configure::read('App.css.compile')) {
     @mkdir(CSS . 'aggregate' . DS . $gitVersion);
     @chmod(CSS . 'aggregate' . DS . $gitVersion, 0775);
   }
-  
+
   // Create one file aggregating all css content
   // per medium (screen, print, etc.)
   foreach ($cssIncludes as $media => $cssInlcudes2) {
     $fileName = $gitVersion;
     $content  = '';
-    
+
     // get the content and the aggregate file name
     foreach ($cssInlcudes2 as $CssName => $include) {
       $fileName .= $name;
       $content .= file_get_contents(CSS . $CssName);
-      $content  = r('(../img/', '(../../../img/', $content);
-      // @TODO Additional clean up: 
+      $content  = str_replace('(../img/', '(../../../img/', $content);
+      // @TODO Additional clean up:
       // strip out comments
       //  $content = preg_replace('/((\/\*\n)+((.)*|(\n)+)+(\*\/)+)/Um','', $content);
       //  $content = preg_replace('/(}(\n)+\/)/Um',"}\n/", $content);
@@ -67,7 +67,7 @@ if (Common::isDevelopment() || Configure::read('App.css.compile')) {
       // The css file can use the css3 selector directly and it get replace, as in:
       //   border-radius -> -moz-border-radius & -webkit-border-radius + IE Js fix
       //   border-top-right-radius, border-bottom-right-radius
-      //   border-bottom-left-radius, border-top-left-radius,    
+      //   border-bottom-left-radius, border-top-left-radius,
       $content .= "\r\n";
     }
     $fileName = 'aggregate' . DS . $gitVersion . DS . md5($content.$media) . '.css';
@@ -79,7 +79,7 @@ if (Common::isDevelopment() || Configure::read('App.css.compile')) {
     }
 
     // display the css tag
-    echo '  '.$html->css(r('.css', '', $fileName),null,array('media' => $media)) . "\n";
+    echo '  '.$html->css(str_replace('.css', '', $fileName),null,array('media' => $media)) . "\n";
   }
 }//_EOF
 ?>

@@ -5,7 +5,7 @@
  *
  * @copyright   2010 (c) Greenpeace International
  * @author      remy.bertot@greenpeace.org
- * @package     greenpeace.boost.pages_controller
+ * @package     app.controllers.pages
  */
 class PagesController extends AppController {
   var $name = 'Pages';

@@ -2,20 +2,51 @@
  * Generic CSS
  * @copyright   Greenpeace International
  * @author      rbertot@greenpeace.org
- */
-/***********************************************************************************
- * General Style Info 
  ***********************************************************************************/
-
-* {
+/* Reset */
+body,div,
+dl,dt,dd,
+ul,ol,li,
+h1,h2,h3,h4,h5,h6,
+form,fieldset,input,textarea,
+p,blockquote,pre,
+th,td {
   margin:0;
   padding:0;
 }
+table {
+  border-collapse:collapse;
+  border-spacing:0;
+}
+fieldset,img {
+  border:0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+  font-style:normal;
+  font-weight:normal;
+}
+ol,ul {
+  list-style:none;
+}
+caption,th {
+  text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-size:100%;
+  font-weight:normal;
+}
+q:before,q:after {
+  content:'';
+}
+abbr,acronym {
+  border:0;
+}
+
+/* Generics */
 body {
   background:#66CC00;
   font-family: helvetica, arial, verdana, sans-serif;
   font-size:80%;
-  margin:0;
 }
 /* links */
 a {
@@ -38,13 +69,10 @@ h1, h2, h3, h4 {
 }
 h2 {
   font-size:2em;
-  margin:2px 0 5px 0;
 }
 h3 {
   font-weight:normal;
   font-size:1em;
-  margin:0 0 8px 2px;
-  padding:0px 2px 2px 20px;
 }
 /* high level shortcut*/
 .clear {
@@ -68,5 +96,5 @@ h3 {
 }
 /* lists */
 ul, li {
-  margin:0 12px;
 }
+

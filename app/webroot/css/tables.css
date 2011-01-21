@@ -14,6 +14,7 @@ table tr th {
   border:1px solid #bbb;
   text-align:center;
   background: #d4d2d2 url(../img/layout/bg_table_header.png) right 0 repeat-x;
+  font-weight:bold;
 }
 table tr td {
   background:#fff;
@@ -46,7 +47,7 @@ table tr th a.desc {
 }
 table tr td input[type=checkbox],
 table tr th input[type=checkbox] {
-  margin:2px 2px 2px 2px;
+  margin:2px;
   padding:0;
 }
 /* generic tiny collumns */
@@ -56,7 +57,7 @@ table .fold,
 table .comments,
 table .attachments,
 table .favorites{
-  width:16px;
+  width:25px;
 }
 table .actions,
 table .date,

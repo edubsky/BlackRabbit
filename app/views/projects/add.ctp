@@ -1,10 +1,10 @@
 <?php
 /**
  * Add/Edit a project form view
- * 
+ *
  * @copyright   2010 (c) Greenpeace International
  * @author      remy.bertot@greenpeace.org
- * @package     greenpeace.boost.views.projects.add.ctp
+ * @package     app.views.projects.add > edit
  */
   $title_for_layout = ($this->action == 'add') ?
     __('Add a project',true) :
@@ -16,15 +16,16 @@
   <?php echo $this->MyForm->create('Project'); ?>
     <fieldset>
       <legend><?php echo __('Project\'s details',true); ?></legend>
-      <?php 
+      <?php
         echo $this->MyForm->input('name', array(
           'label' => __('Name',true),
-          'class' => 'required', 
+          'class' => 'required',
           'error' => array(
             'notempty' => __('Sorry you can\'t have a project with no name!',true)
-        )));
+          )
+        ));
       ?>
-      <p class='notice'><strong><?php echo __('example');?>: </strong><?php echo __('white rabbit project'); ?></p>
+      <p class='example'><strong><?php echo __('Example',true);?>:</strong> <?php echo __('white rabbit project'); ?></p>
       <?php echo $this->MyForm->input('description'); ?>
       <?php echo $this->MyForm->input('archived'); ?>
       <?php echo $this->MyForm->input('completed'); ?>

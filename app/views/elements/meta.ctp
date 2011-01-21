@@ -8,7 +8,7 @@
  */
  $urlBase = 'meta'. DS ;
 ?>
-  <base href='<?php echo r('www.', '', Router::url('/', true)); ?>'/>
+  <base href='<?php echo str_replace('www.', '', Router::url('/', true)); ?>'/>
 <?php echo $this->element($urlBase . 'ascii_art'); ?>
 <?php echo $this->element($urlBase . 'charset'); ?>
 <?php echo $this->element($urlBase . 'copyright'); ?>

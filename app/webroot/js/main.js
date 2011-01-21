@@ -42,9 +42,16 @@ $(function() {
     })
   });
   
+  /**
+   * Cookie check
+   * Hide warning message if the cookie support is enabled
+   */
+   if(navigator.cookieEnabled) {
+     $('.message.cookies_must_be_enabled').hide();
+   }
 });
 /**
- * NON JQUERY STUFFS - EVIL LAND
+ * NON JQUERY STUFFS - LAND OF EVIL
  */
 /**
  * Launch the browser's bookmarks dialog

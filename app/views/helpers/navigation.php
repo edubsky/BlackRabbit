@@ -25,20 +25,20 @@ class NavigationHelper extends Apphelper {
    * Small helper function to know if a navigation item is currently selected
    * @param $item
    * @return string (selected, unselected) or boolean
-   */  
+   */
   function isSelected($itemName,$itemList,$returnOptions='class') {
     $result = false;
 
     $link = $itemList[$itemName]['pattern'];
 	$currentLocation = substr($this->here, strlen($this->base));
-	
-    $result = ($link == $currentLocation || strpos($link, '#') === 0 
+
+    $result = ($link == $currentLocation || strpos($link, '#') === 0
       && preg_match(substr($link, 1), $currentLocation));
-    
+
     switch($returnOptions){
-      case 'class': 
+      case 'class':
         return $result ? 'selected' : 'unselected';
-      default: 
+      default:
         return $result;
     }
   }
@@ -69,9 +69,8 @@ class NavigationHelper extends Apphelper {
   function getDefaultOptions(){
     return array(
       'div'    => false,          // extra div wrapper? class name it!
-      'class'  => 'menu with_tabs', // extra class
-      'id'     => '',             // not the id of the menu, but the id of the div
-      'indent' => '',             // for creepy programmers
+      'class'  => 'sub menu with_tabs', // extra class
+      'id'     => ''             // not the id of the menu, but the id of the div
     );
   }
 }

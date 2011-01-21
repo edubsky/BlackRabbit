@@ -2,7 +2,7 @@
 /**
  * Display / View type selector
  * Allow displaying a view as table, icons, list;
- * 
+ *
  * @copyright   2010 (c) Greenpeace International
  * @author      remy.bertot@greenpeace.org
  * @package     app.views.elements.display_selector
@@ -12,12 +12,12 @@
   $ds = &$this->DisplaySettings;
 ?>
 <?php if($div) : ?>
-  <div class='selector' id='display_selector'>
+  <div class='display selector'>
 <?php endif; ?>
 <?php if($title) : ?>
-    <h4><?php e($title); ?>:</h4>
+    <h4><?php echo $title; ?>:</h4>
 <?php endif; ?>
-<?php if(isset($ds->viewModeOptions) && count($ds->viewModeOptions)): 
+<?php if(isset($ds->viewModeOptions) && count($ds->viewModeOptions)):
          $max = count($ds->viewModeOptions) -1 ; ?>
     <ul class="<?php echo $ds->useIcons(); ?>">
 <?php foreach($ds->viewModeOptions as $i => $mode):
@@ -25,7 +25,7 @@
        $class.= ($i == $max) ? 'last ' : '';
        $class.= $ds->isViewModeSelected($mode);
 ?>
-      <li class='<?php e($class); ?>'><?php echo $ds->viewModelink($mode); ?></li>
+      <li class='<?php echo $class; ?>'><?php echo $ds->viewModelink($mode); ?></li>
 <?php endforeach; ?>
     </ul>
 <?php endif; ?>

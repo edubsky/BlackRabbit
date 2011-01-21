@@ -1,42 +1,43 @@
-/* Notices and Errors */
-.error{
-  background-color:#ffebe8;
-  border:1px solid #cc0000;
+/* Generic notices and errors */
+.message.error{
+  background-color:#FFEBE8;
+  border:1px solid #CC0000;
 }
+.message.warning{
+  background:#FFF8DB;
+  border:1px solid #FFCC00;
+}
+.message.notice{
+  border:1px solid #0000FF;
+  background:#EEEEFF;
+}
+.message.success {
+  background:#EAF4E0;
+  border:1px solid #66CC00;
+}
+.message.debug{
+  background:#FFF;
+  border:1px solid #CCC;
+}
+/* Paragraph (see. forms) */
+p.success,
+p.notice,
+p.warning,
 p.error {
   font-size:120%;
   line-height:140%;
-  padding:0.8em;
+  padding:5px 5px 5px 10px;
   margin:10px 0;
   clear:both;
   width:auto;
 }
-.notice{
-  background:#FFF8DB;
-  border:1px solid #FFCC00;
-}
-p.notice {
-  color:#000;
-  display:block;
-  font-size:120%;
-  line-height:140%;
-  padding:0.8em;
-  margin:1em 0;
-}
-p.success {
-  background:green;
-  color:#fff;
-}
-/* Message */
+/* Message class specials*/
 .message{
   font-size:1.1em;
-  padding:0;
-  margin:0;
 }
 /* close button */
 .message a.close{
   float:right;
-  color:#cc0000;
 }
 .message a.close.with_icon{
   background-position: right 13px ;
@@ -62,10 +63,11 @@ p.success {
 }
 /* Inline style */
 .message.inline{
-  with:auto;
+  width:auto;
   border-top:0;
-  padding:5px 0;
-  margin:0;
+  border-left:0;
+  border-right:0;
+  padding:5px 0 5px 10px;
 }
 .message.inline p{
   display:inline;
@@ -75,19 +77,15 @@ p.success {
   font-weight:bold;
 }
 .message.inline a.close.with_icon{
-  padding:0px 22px 0 0;
+  padding-right:22px;
   background-position: right 1px;
 }
 /* Message in lists */
 ul.messages{
-  list-style-type: none;
-  padding:0;
-  margin:0;
 }
 /* hubble bubble */
 .bubble {
   border:1px solid #CCC;
-  -moz-border-radius:5px;
   padding-bottom:10px;
 }
 .buble + .bubble_spacer {

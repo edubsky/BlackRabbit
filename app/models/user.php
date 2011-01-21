@@ -8,24 +8,25 @@
  */
 class User extends AppModel {
   var $displayField = 'name';
-  var $actsAs = array(
-    'SavedBy'
-  );
 
   var $belongsTo = array(
     'Person',
     'Office',
     'Role'
   );
-  
+
   var $hasOne = array(
-  //  'Role'
+    'Preference'
   );
-  
+
   var $hasMany = array(
-   // 'AuthKey' => array('dependent' => true),
-   // 'ReportsUser' => array('dependent' => true)
-   'UserConfig'
+    'AuthKey' => array(
+      'dependent' => true
+    ),
+    'Address' => array(
+      'foreignKey' => 'foreign_key',
+      'dependent'=> true
+    )
   );
 
   /**
@@ -33,12 +34,7 @@ class User extends AppModel {
    * @var $validate array
    */
   var $validate = array(
-    'name' => array(
-      'required' => array(
-        'rule' => 'notEmpty', 
-      )
-    ),
-    'login' => array(
+    'username' => array(
       'valid' => array(
         'rule' => 'email'
       )
@@ -47,145 +43,229 @@ class User extends AppModel {
       //   'field' => 'login', 'message' =>
       //   'This email is already used by another account.'
       // )
-    )
-    , 'password' => array(
+    ),
+/*    'password' => array(
       'required' => array(
         'rule' => array('minLength', 8)
-      )
-      , 'confirmed' => array(
+      ),
+      'confirmed' => array(
         'rule' => 'validateConfirmed',
         'confirm' => 'repeat_password'
       )
-    )
+    )*/
   );
-  
+
   /**
    * Return information about the user
    * @param $field array desired field(s)
    * @return $user array field or entire user record if field is unspecified
    */
-  static function get($field=null){
-    // Get the User object from current instance or session
+  static function get($field = null) {
+    // try to get the User object from current
     $user = Configure::read('User');
-
-    if (empty($user) && !defined('INTERNAL_CAKE_ERROR')) {
+    // try to get from the session otherwise
+    if (empty($user)) {
       $Session = Common::getComponent('Session');
       $user = $Session->read('User', $user);
     }
-
-    if (empty($field) || is_null($user)) {
+    // or start a guest session
+    if (empty($user)) {
+      $user = User::setActive('guest');
+    }
+    // return the object or the needed field
+    if (empty($field)) {
       return $user;
-    }
-
-    if (strpos($field, '.') === false) {
-      if (in_array($field, array_keys($user))) {
-        return $user[$field];
+    } else {
+      if (strpos($field, '.') === false) {
+        if (in_array($field, array_keys($user))) {
+          return $user[$field];
+        }
+        $field = 'User.'.$field;
       }
-      $field = 'User.'.$field;
+      return Set::extract($user, $field);
     }
-
-    return Set::extract($user, $field);
   }
-  
+
+  /**
+   * Sessions set alias
+   * @param $path string
+   * @param $value mixed
+   */
+  static function setValue($path,$value){
+    $user = User::get();
+    $user = Set::insert($user,$path,$value);
+    User::setActive($user,false);
+  }
+
   /**
    * Is the user session active?
    * @return boolean
    */
   static function isActive() {
-    return (is_null(User::get()));
+    return (!is_null(User::get()));
   }
-  
+
   /**
    * Is the user a Guest ?
    * @return boolean
    */
   static function isGuest() {
-    return (low(User::get('Role.name')) == low(__('Guest',true)));
+    return (strtolower(User::get('Role.name')) == strtolower(__('Guest',true)));
   }
-  
+
   /**
    * Set the user as current
    * @param array $user
    * @param bool $updateSession
    * @param bool $generateAuthCookie
    */
-  static function setActive($user = null, $updateSession = false, $generateAuthCookie = false) {
+  static function setActive($user = null, $find=true) {
     $_this = ClassRegistry::init('User');
-
-    if (isset($user['User']['id']) && Common::isUuid($user['User']['id'])) {
-      $user = $_this->find('first',$_this->__getCurrentUserFindConditions($user['User']['id']));
-    } else {
-      $user = $_this->find('first',$_this->__getGuestUserFindConditions());
-    }
-
-    if(!Common::isUuid($user['User']['id'])){
-      //TODO Error 500
-    } else {
-      Configure::write('User', $user);
-  
-      $Session = Common::getComponent('Session');
-      $Session->write('User', $user);
-  
-      if ($generateAuthCookie) {
-        $Cookie = Common::getComponent('Cookie');
-        $Cookie->write('Auth.name', $user['User']['login'], false, Configure::read('App.Cookie.Life'));
+    //@todo only find if $user is incomplete compared to conditions
+    if($find) {
+      if ($user!='guest' && isset($user['User']['id']) && Common::isUuid($user['User']['id'])) {
+        $user = $_this->find('first',
+          $_this->getFindOptions('userActivation',$user)
+        );
+      }
+      if($user=='guest' || is_null($user) || empty($user)) {
+        $user = $_this->find('first',
+          $_this->getFindOptions('guestActivation')
+        );
       }
     }
+    Configure::write('User', $user);
+    $Session = Common::getComponent('Session');
+    $Session->write('User', $user);
+    return $user;
   }
 
   /**
-   * Return the conditions for finding the current user
-   * Used to defined which related models' information are to be retrieved 
-   * @param $id User.id
-   * @return $conditions array 
+   * Return the find options to be used
+   * @param string context
+   * @return array
    */
-  static function __getCurrentUserFindConditions($id){
-    return array(
-        'conditions' => array(
-          'User.id' => $id,
-          'User.active' => 1
-        ),
-        'contain' => array(
-          'Person','Role', 'Office'
-        ),
-        'fields' => array(
-          'User.id', 'User.username', 'User.permissions',
-          'User.locale', 'User.language', 'User.active', 
-          'User.person_id', 'Person.fname', 'Person.lname',
-          'User.role_id', 'Role.permissions', 'Role.name',
-          'User.office_id', 'Office.name', 'Office.acronym', 'Office.region', 'Office.type' 
-        )
-      );
-  }
-  
-  static function __getGuestUserFindConditions(){
-    return array(
-      'conditions' => array(
-        'User.username' => 'guest',
-        'User.active' => 1
-      ),
-      'contain' => array(
-        'Role'
-      ),
-      'fields' => array(
-        'User.id', 'User.username', 'User.permissions',
-        'User.locale', 'User.language', 'User.active', 
-        'User.role_id', 'Role.permissions', 'Role.name'
-      )
+  static function getFindOptions($case,&$data = null) {
+    return array_merge(
+      User::getFindConditions($case,&$data),
+      User::getFindFields($case)
     );
   }
-  
+
+  /**
+   * STATIC - Return the conditions to be used
+   * to activate a User
+   * @param $context string{guest or id}
+   * @param $id User.id
+   * @return $condition array
+   */
+  static function getFindConditions($case="guestActivation",&$data=null){
+    switch($case){
+      case "login":
+        $conditions = array(
+         'conditions' => array(
+           'User.password' => $data['User']['password'],
+           'User.username' => $data['User']['username'],
+         )
+       );
+      break;
+      case "forgot_password":
+        $conditions = array(
+         'conditions' => array(
+           'User.username' => $data['User']['username'],
+         )
+        );
+      break;
+      case "userActivation":
+        $conditions = array(
+          'conditions' => array(
+            'User.id' => $data['User']['id'],
+            'User.active' => 1,
+          )
+        );
+      break;
+      case "guestActivation": default:
+        $conditions = array(
+          'conditions' => array(
+            'User.username' => 'guest',
+          )
+        );
+      break;
+    }
+    return $conditions;
+  }
+
+  /**
+   * STATIC - Return the conditions to be used
+   * to activate a User
+   * @param string $case context ex: login, activation
+   * @return $condition array
+   */
+  static function getFindFields($case="guestActivation"){
+    switch($case){
+      case "login":
+        $fields = array(
+          'fields' => array(
+            'User.active'
+          )
+        );
+      break;
+      case "forgot_password":
+        $fields = array(
+          'contain' => array(
+            'Person'
+          ),
+          'fields' => array(
+            'User.id', 'User.username', 'User.permissions', 'User.active',
+            'User.person_id', 'Person.firstname', 'Person.lastname'
+          )
+        );
+      break;
+      case "guestActivation":
+        $fields = array(
+          'contain' => array(
+            'Role(id,permissions,name)',
+            'Preference(*)',
+            'Person'
+          ),
+          'fields' => array(
+            'User.id', 'User.username', 'User.permissions',
+            'User.locale', 'User.active',
+            'User.person_id', 'Person.firstname', 'Person.lastname'
+          )
+        );
+      break;
+      case "userActivation":
+        $fields = array(
+          'contain' => array(
+            'Role(id,permissions,name)',
+            'Preference(*)',
+            'Person'
+            //'Office(name,acronym,region,type)',
+          ),
+          'fields' => array(
+            'User.id', 'User.username', 'User.permissions',
+            'User.locale', 'User.active',
+            'User.person_id', 'Person.firstname', 'Person.lastname'
+          )
+        );
+      break;
+
+    }
+    return $fields;
+  }
+
   /**
    * Is a user allowed to do something?
    * @param array $ressource
    * @param array $property
-   * @param string $rules - something like "*:*,!projects:delete"
+   * @param string $rules - something like "*:*,!users:delete"
    */
-  static function isAllowed($ressource, $property){
+  static function isAuthorized($ressource, $property){
     return (Common::RoleVsUserRights(
-      Common::requestAllowed($ressource, $property, User::get('Role.permissions')), 
+      Common::requestAllowed($ressource, $property, User::get('Role.permissions')),
       Common::requestAllowed($ressource, $property, User::get('User.permissions'))
     ));
   }
-}
-?>
+
+}//_EOF

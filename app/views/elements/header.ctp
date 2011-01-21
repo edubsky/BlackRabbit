@@ -8,10 +8,6 @@
  */
  $urlBase = 'header' . DS ;
 ?>
-  <h1>
-    <a href="<?php echo Router::url('/home'); ?>" class='logo'>
-      <span><?php echo Configure::Read('App.name'); ?></span>
-    </a>
-  </h1>
+<?php echo $this->element($urlBase.'logo'); ?>
 <?php //echo $this->element($urlBase.'projects_selector'); ?>
 <?php echo $this->element($urlBase.'user_badge'); ?>

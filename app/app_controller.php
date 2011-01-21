@@ -1,81 +1,78 @@
 <?php
 /**
  * Application Controller
- * The default controller: all other controllers extend it
- * 
+ * All other controllers extend from it
+ *
  * @copyright   2010 (c) Greenpeace International
  * @author      remy.bertot@greenpeace.org
- * @package     greenpeace.boost.app_controller.php
+ * @package     app.app_controller
  */
-App::import('Model', array('User', 'Page'));
-App::import('Core', 'Controller');
+App::import('Model', array('User'));
+//App::import('Core', 'Controller');
 class AppController extends Controller {
-  
+  /**
+   * @var array $components, controller components
+   */
   var $components = array(
-    'RequestHandler', 'Cookie', 'Session', 'Auth',  // default
-  	//'Email','Json', // 'Ssl','Pgp','Json',
-    'Message'
+    'RequestHandler','Cookie','Session',      // default
+    'Mailer',//'Json', // 'Ssl','Pgp','Json',
+    'Auth',                                   // redefined
+    'Log','Message','DisplaySettings'         // custom
   );
 
+  /**
+   * @var array $plugins
+   *
   var $plugins = array(
-    'Comments'
+    //'Comments'
     //'Bugs','Tellfriends','Logging','Chat',
     //'Smileys','Segments','Filters',
   );
+  */
 
+  /**
+   * @var array $helpers, helpers for the view
+   */
   var $helpers = array(
     'Html','Form','Paginator','Session',   // default
     'Javascript',
     'MyHtml','MyPaginator','MyForm',       // redefinitions
-    'Common', 'DisplaySettings',           // custom
-    'Navigation','Actions', 'Sidebar',      
+    'DisplaySettings',                     // custom
+    'Navigation','Actions', 'Sidebar',
     'Favorites','Widgets'
   );
 
   /**
    * Before Filter hoock
+   * @return void
    */
   function beforeFilter(){
-    //echo "fuckaty"; die;
-    
-    // Authentication components config
-    $this->Auth->autoRedirect = false;
-    $this->Auth->userScope = array('User.active' => 1);
-
-    if(User::get() != null && !User::isGuest()){
-      // Project List is always usefull
-      // @todo optimize for double call on projects::index ? (aaargh)
-      // @todo only get the list at login / counter cache?
-      
-      $this->Project = ClassRegistry::init('Project');
-  	  $project_list = $this->Project->find('list', array(
-  	  	'fields' => array('name')
-  	  ));
-  	  $project_list['ADMIN_PANEL'] = __('Admin panel',true); // special section
-  	  $this->set(compact('project_list'));
-  	  
-  	  // Load favorites list
-  	  $this->Favorite = ClassRegistry::init('Favorite');
-  	  $this->Favorite->load(User::get('id'));
-  	  
-  	  //Check access rights
-  	  if(!User::isAllowed($this->name,$this->action)){
-        $this->Message->add(
-          sprintf(__('Sorry you are not allowed to access this resource (%s:%s)',true),
-            $this->name,$this->action), 'error'
-        );
-      }
-    }
+    $this->Auth->filterAccess();
   }
 
   /**
-   * Before render hoock
+   * Common index page behaviors
+   * Allow enabling several view types (icon, list, etc.)
+
+  function index() {
+    // view mode
+    $viewMode = $this->getViewMode();
+    if($viewMode) {
+      $this->action = 'index_'.$viewMode;
+    }
+  }
    */
-  function beforeRender(){
-    if($this->name == 'CakeError' && !isset($this->Auth->user)) {
+
+  /**
+   * Before render callback
+   * @see controller::beforeRender
+   * @return void
+   */
+  function beforeRender() {
+    if($this->name == 'CakeError') {
       $this->layout = 'error';
     }
+    $this->Log->log();
     parent::beforeRender();
   }
 }//_EOF
-?>

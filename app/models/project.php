@@ -9,6 +9,14 @@
 class Project extends AppModel {
   var $name = 'Project';
   var $displayField = 'name';
+
+  var $actsAs = array(
+    'Archivable', 'Favoritable'
+  );
+
+  var $hasMany = array(
+  );
+
   var $validate = array(
     'name' => array(
       'notempty' => array(

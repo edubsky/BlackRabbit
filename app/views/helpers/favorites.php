@@ -8,7 +8,7 @@
  */
 class FavoritesHelper extends Apphelper {
   var $helpers = array('Html');
-  var $config; 
+  var $config;
 
   /**
    * Before render hook function
@@ -17,9 +17,9 @@ class FavoritesHelper extends Apphelper {
    * @access public
    */
   function beforeRender() {
-    $this->config = Configure::read('Favorites');
+    //$this->config = Configure::read('App.favorites');
     $this->config['icons'] = array(
-      'fav' => '/img/icons/S/rate.png',
+      'fav'   => '/img/icons/S/rate.png',
       'unfav' => '/img/icons/S/unrate.png'
     );
   }
@@ -29,12 +29,14 @@ class FavoritesHelper extends Apphelper {
    * @param $model
    * @param $uuid
    * @return string link
-   */  
-  function link($model, $uuid) {
-    $isFavorited = ClassRegistry::init('Favorite')->isFavorited($uuid);
+   */
+  function link($uuid,$model,$isFavorited=null) {
+    if(is_null($isFavorited)){
+      $isFavorited = ClassRegistry::init('Favorite')->isFavorited($uuid,$model);
+    }
     if (!$isFavorited) {
       $img = $this->Html->image(
-        $this->config['icons']['unfav'], 
+        $this->config['icons']['unfav'],
         array('alt'=> __('unmark as favorite', true))
       );
       return $this->Html->link($img, array(
@@ -43,7 +45,7 @@ class FavoritesHelper extends Apphelper {
       ));
     } else {
       $img = $this->Html->image(
-        $this->config['icons']['fav'], 
+        $this->config['icons']['fav'],
         array('alt'=> __('mark as favorite', true))
       );
       return $this->Html->link($img, array(
@@ -54,11 +56,11 @@ class FavoritesHelper extends Apphelper {
   }
 
   /**
-   * 
+   * Select all link
    * @param $model
    * @return string link
    */
-  function favall($model=null){
+  function favalllink($model=null){
     return $this->Html->image($this->config['icons']['fav']);
   }
 }//_EOF

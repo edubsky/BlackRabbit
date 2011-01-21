@@ -9,7 +9,6 @@
 class Role extends AppModel {
   var $displayField = 'name';
   var $actsAs = array(
-    'SavedBy'
   );
   var $hasMany = array(
     'User'

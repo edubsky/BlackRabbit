@@ -2,19 +2,23 @@
 /**
  * Application Model
  * All models inherit from this one
- * 
+ *
  * @copyright   2010 (c) Greenpeace International
  * @author      remy.bertot@greenpeace.org
- * @package     app.
+ * @package     app.app_model
  */
 class AppModel extends Model {
-  
+  var $actsAs = array('Containable');
+
   /**
-   * Internationalized model names
-   * @return string from configuration or default model name
+   * Never fetch any recursive data from associated models
+   * Use containable for any assocs
+   * @var integer
    */
-  static function getName($model=null) {
-    // TBC
+  public $recursive = -1;
+
+  static function getName($name){
+    return Configure::read('App.humanize.objects.'.$name);
   }
 }//_EOF
-?>
+

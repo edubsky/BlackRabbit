@@ -6,17 +6,24 @@
  * @author      remy.bertot@greenpeace.org
  * @package     app.views.elements.js_includes.ctp
  */
-if(!isset($javascript)) return; // helper required
-Configure::load('includes' . DS . 'js');  // javascript inclusion rules
+// helper is required
+if(!isset($javascript)) return;
 
-// The context
+// Must be enabled application & user wise
+if(!Configure::read('App.gui.javascript.enabled')) return;
+if(!User::get('Preference.gui.javascript.enabled')) return;
+
+// load the javascript inclusion rules
+Configure::load('includes' . DS . 'js');
+
+// define the context
 $controller = @Inflector::camelize(@$this->params['controller']);
 $action = @$this->params['action'];
 $alljs = Configure::read('JsIncludes');
 $jsInclude = array();
 
 // Define JS to be included
-// Based on config and includes rules
+// Based on context and includes rules
 foreach ($alljs as $name => $include) {
   if (Common::requestAllowed($controller, $action, $include['rules'])) {
     unset($include['rules']);

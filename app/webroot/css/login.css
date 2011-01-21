@@ -1,26 +1,24 @@
 /* Login screen */
-#header,
-#header h1{
+.header,
+.header h1{
   padding:0;
   margin:0;
 }
-#container{
+.login_wrapper{
   width:350px;
   margin:auto;
-  margin-top:25px;
+  margin-top:20px;
 }
-#content_wrapper{
+/* content */
+.content_wrapper{
   float:left;
   width:372px;
 }
-.content.users .menu.with_tabs{
-  float:left;
-  margin:0;
-  border:0;
+.content.users{
+  padding:0;
 }
-.content.users.login{
-  margin:0;
-  padding-top:0;
+.content.users .menu.with_tabs.top {
+  padding-bottom:8px;
 }
 .content.users .form_wrapper{
   float:left;
@@ -32,30 +30,6 @@
   float:left;
   background:#FFF;
   padding:5px 10px 10px 10px;
-  margin:0;
-}
-.content.users.login .menu.with_tabs{
-  float:left;  
-  width:360px;
-  margin-left:3px;
-  background: transparent url(../img/layout/shadow_x.png) 0 32px repeat-x;	 
-}
-.content.users.login .menu.with_tabs li a{
-  border:0;
-  font-size:1.2em;
-  padding-left:16px;
-  padding-right:16px;
-}
-.content.users.login .menu.with_tabs li a.unselected{
-  background:#1d791d;
-  border-bottom:5px solid #116411;
-  padding-bottom:1px;
-  color:#FFF;
-}
-.content.users.login .menu.with_tabs li a.unselected:hover{
-  background:#1d791d;
-  border-bottom:5px solid #116411;
-  color:#ee6600;
 }
 .content.users.login h2{
   display:none;
@@ -64,15 +38,22 @@
   width:350px;
   font-weight:bold;
 }
-#footer{
-  float:left;
+.content.users.login form p.message{
+  width:96.5%;
 }
-#footer p{
-  float:left;
-  width:350px;
+
+/* footer */
+.footer_wrapper{
+  width:370px;
+  float:left;  
+  margin-left:3px; 
+  background: transparent url(../img/layout/shadow_x.png) 0 -7px repeat-x;	
+}
+.footer{
   text-align:center;
   padding:10px;
   color:#FFF;
-  margin-left:3px; 
-  background: transparent url(../img/layout/shadow_x.png) 0 -7px repeat-x;	
+}
+.footer p.version{
+  display:none;
 }

@@ -2,7 +2,7 @@
  * Two Collumn Layout, left or right sidebar
  * @credit: Mathew James Taylor
  ***********************************************************************************/
-#container {
+.container {
   min-width:750px;
 }
 .content_wrapper {
@@ -12,7 +12,6 @@
   width:100%;        /* width of whole page */
   overflow:hidden;   /* This chops off any overhanging divs */
 }
-/* common settings */
 .content_wrapper2 {
   float:left;
   width:100%;
@@ -22,14 +21,14 @@
 .sidebar{
   float:left;
   position:relative;
-  padding:0 0 1% 0;
+  padding-bottom:1%;
   overflow:hidden;
 }
 /********************************* 
- * Sidebar on the right settings 
+ * Sidebar on the right 
  *********************************/
 .with_right_sidebar {
-  background:#efefef;    /* right column background colour */
+  background:#efefef; /* right column background colour */
 }
 .with_right_sidebar .content_wrapper2 {
   right:25%;       /* right column width */
@@ -45,7 +44,7 @@
 }
 
 /********************************* 
- * Sidebar on the left settings
+ * Sidebar on the left 
  *********************************/
 .with_left_sidebar {
   background:#fff; /* content background */
@@ -55,10 +54,10 @@
   background:#f4f4f4; /* sidebar background */
 }
 .with_left_sidebar .content {
-  width:71.5%;  /* right column content width */
-  left:101.5%;  /* 100% plus left column left padding */
+  width:71.5%; /* right column content width */
+  left:101.5%; /* 100% plus left column left padding */
 }
 .with_left_sidebar .sidebar {
-  width:23%;  /* left column content width (column width minus left and right padding) */
-  left:4.5%;  /* (right column left and right padding) plus (left column left padding) */
+  width:23%; /* left column content width (column width minus left and right padding) */
+  left:4.5%; /* (right column left and right padding) plus (left column left padding) */
 }

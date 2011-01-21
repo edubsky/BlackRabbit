@@ -1,16 +1,12 @@
 /* breadcrumb */
 ul.breadcrumb {
-  margin:0;
-  padding: 0px 0 5px 0;
+  padding-left:5px;
   font-size:1.1em;
 }
 ul.breadcrumb li {
-  list-style:none;
   display:inline;
-  padding:0;
-  margin:0;
 }
-ul.breadcrumb li.here{
+ul.breadcrumb li.here {
   background:transparent url(../img/icons/S/home.jpg) 0 1px no-repeat;
-  padding-left: 20px;
+  padding-left:20px;
 }

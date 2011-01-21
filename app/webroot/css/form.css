@@ -3,8 +3,6 @@
  ***********************************************************************************/
 form {
   clear:both;
-  margin:0;
-  padding:0;
 }
 fieldset {
   border:1px solid #EEE;
@@ -18,7 +16,6 @@ fieldset legend {
   padding:0 10px;
 }
 fieldset fieldset {
-  margin-top:0px;
   margin-bottom:10px;
 }
 fieldset fieldset legend {
@@ -27,7 +24,8 @@ fieldset fieldset legend {
 }
 fieldset fieldset div {
   clear:left;
-  margin:0 10px;
+  margin-left:10px;
+  margin-right:10px;
 }
 form div.input {
   color:#444;
@@ -73,16 +71,18 @@ input[type=checkbox] {
   margin:8px 5px 0 2px;
 }
 label input.checkbox {
-  padding:0;
   font-size:1.3em;
 }
 input[type=radio] {
   float:left;
   width:auto;
-  margin:0 3px 7px 0;
+  margin-top:3px;
+  margin-bottom:7px;
 }
 div.radio label {
-  margin:0 0 6px 20px;
+  margin:6px 20px;
+  margin-left:20px;
+  margin-bottom:6px;
 }
 input[type=submit] {
   display:inline;
@@ -109,9 +109,18 @@ input[type=submit] {
   padding:5px 5px;
   width:auto;
   vertical-align:bottom;
-  -moz-border-radius:5px;
 }
-/* custom messages */
+/* special messages */
+form .example{
+ padding:5px;
+ color:#333;
+}
+/* errror specials */
+.error > label{
+  color: red;
+}
+
+/* custom messages 
 p.notice strong{
   font-size:1em;
 }
@@ -119,7 +128,7 @@ form p.notice{
   font-size:1.1em;
   border:0;
   background:transparent;
-  padding:0;
   margin:5px 5px 5px 5px;
   color:#777;
 }
+ */

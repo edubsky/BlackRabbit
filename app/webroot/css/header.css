@@ -1,194 +1,66 @@
 /***********************************************************************************
  * Header
  ***********************************************************************************/
-#header {
+.header {
   float:left;
-  padding:0px;
   background: transparent url(../img/layout/shadow_x.png) center 78px repeat-x;
   width:100%;
 }
-#header h1 {
-  padding:0px 0px 5px 1%;
-  margin-top:5px;
-  font-size:19px;
-  color:#FFF;
+.header h1 {
   float:left;
+  margin:5px 15px 5px 1%;
+  color:#FFF;
 }
-#header h1 a{
+.header h1 a{
   display:block;
   width:170px;
   height:40px;
   background: url(../img/layout/logo.jpg) center center no-repeat;
 }
-#header a.logo span{
+.header a.logo span{
   display:none;
 }
-#header a {
+.header a {
   color:#FFF;
   text-decoration:none;
 }
-#header a:hover {
+.header a:hover {
   color:#ee6600;
 }
-#header a.selected {
+.header a.selected {
   color:#006600;
 }
-/* use badge */
-#header #userbadge {
+/* User badge */
+.header .userbadge {
   float:right;
   margin-right:1%;
   background:#1d791d;
   color:white;
   font-size:1.1em;
   padding:10px 20px 8px 20px;
-  -moz-border-radius:0 0 5px 5px;
 }
-#header #userbadge p{
+.header .userbadge p{
   float:left;
   margin-right:3px;
 }
-#header #userbadge span {
+.header .userbadge span {
   float:left;
 }
-/* top navigation */
-#header #top_navigation {
-  clear:both;
-  float:left;
-  padding:8px 0 5px 0px;
-  width:auto;
-  margin:0 0 0 1.5%;
+.header .userbadge span a.preferences {
+  padding-right:8px;
 }
-#header #top_navigation li {
-  display:inline;
-  margin:0 5px 0px 0;
-}
-#header #top_navigation li a {
-  font-size:1.2em;
-  color:#FFF;
-  background:#1d791d;
-  padding:6px 10px;
-  -moz-border-radius:3px 3px 0 0;
-  border-radius:3px 3px 0 0;
-}
-#header #top_navigation li a.unselected{
-  padding-bottom:1px;
-  border-bottom:5px solid #116411;
-}
-#header #top_navigation li a.selected, 
-#header #top_navigation li a.selected:hover {
-  background:#FFF;
-  color:#003300;
-}
-#header #top_navigation li a:hover {
-  background:#196119;
-}
-/* selector */
-#header ul.selector {
-  z-index:6;
-  float:left;
-  margin:0px 0px 0px 10px;
-  list-style-type:none;
-}
-#header ul.selector li {
-  float:left;
-  margin:0px 0px 0px 5px;
-  padding:0px 0px 2px 0px;
-}
-#header ul.selector li .item {
-  padding:0;
-  margin:0;
-}
-#header ul.selector li .item a {
-  padding:0px 0px 8px 8px;
-  color:white;
-  font-size:1em;
-  border:0;
-  margin:0;
-}
-#header ul.selector li .item a.trigger {
-  margin:0;
-  padding:0;
-  margin-top:-4px;
-}
-#header ul.selector li .item a img {
-  padding:4px 4px 3px 4px;
-  vertical-align:text-bottom;
-  border:1px solid #62bc0b;
-}
-#header ul.selector li .item a.trigger:hover img {
-  border:1px outset #66CC00;
-}
-#header ul.selector li ul.subitem {
-  position:absolute;
-  visibility:hidden;  
-  list-style-type:none;
-  display:block;
-  background:#FFF;
-  border:1px solid #66CC00;
-  z-index:5;
-  width:auto;
-  border-width:0 1px 0 1px;
-  padding:0;
-  margin:5px 0 0 25px;
-}
-#header ul.selector li ul.subitem li {
-  float:none;
-  position:relative;
-  background:transparent;
-  margin:0;
-  padding:0;
-}
-#header ul.selector li ul.subitem li a {
-  display:block;
-  border-top:0;
-  padding:5px;
-  margin:0;
-  font-size:1em;
-  font-weight:normal;
-  border-bottom:1px solid #66CC00;
-}
-/* country selector :uses selector */
-#header #project_selector {
-  float:left;
-  margin:15px 0 0 0;
-}
-#header ul.selector {
-  float:left;
-  font-size:1.5em;
-}
-#header .selector {
-  font-size:1.3em;
-}
-#header .selector .selected_item {
-  border-left:2px solid #FFF;
-  padding-left:.5em;
-}
-#header .selector .sub_item {
-  margin:5px 0 0 15px;
-  width:200px;
-}
-#header .selector .sub_item a {
-  color:#66CC00;
-}
-#header .selector .sub_item a:hover {
-  color:#006600;
-}
-/* User badge */
-#header #userbadge span a.preferences {
-  padding:0 8px 0 0;
-}
-#header #userbadge span a.with_icon.preferences {
+.header .userbadge span a.with_icon.preferences {
   padding-left:28px;
   background-position: 5px center;
 }
-#header #userbadge a.logout {	
-  padding:0 0 0 5px;
+.header .userbadge a.logout {	
+  padding-left:5px;
 }
-#header #userbadge a.with_icon.logout {
+.header .userbadge a.with_icon.logout {
   padding-right:25px;
   background-position: right center;
 }
-#header #userbadge a.with_icon.logout:hover {
+.header .userbadge a.with_icon.logout:hover {
   color:#CC6600;
   background-position: right center;
 }

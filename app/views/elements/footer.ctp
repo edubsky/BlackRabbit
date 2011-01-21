@@ -7,7 +7,9 @@
  * @package     app.views.elements.footer.ctp
  */
 ?>
-<div id="footer">
-  <p class="copyright"><strong><?php e(Configure::read('App.copyright'));?></strong>&nbsp;&nbsp;&#149;</p>
-  <p class="version"><?php e(Configure::read('App.version.number')); e(' '.Configure::read('App.version.name'));?></p>
+<div class="footer_wrapper">
+  <div class="footer">
+    <p class="copyright"><strong><?php echo Configure::read('App.copyright');?></strong></p>
+    <p class="version">&#149;&nbsp;<?php echo Configure::read('App.version.number').' '.Configure::read('App.version.name');?></p>
+  </div>
 </div>

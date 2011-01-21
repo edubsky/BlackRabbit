@@ -5,16 +5,19 @@
 <?php echo $this->element("meta"); ?>
 </head>
 <body>
-<div id="container">
-<div id="header">
+<div class="container">
+<?php echo $this->element('messages'); ?>
+<div class="login_wrapper">
+<div class="header">
 <?php echo $this->element('header'); ?>
 </div>
-<div id="content_wrapper">
+<div class="content_wrapper">
 <div class="content users login">
 <?php echo $content_for_layout; ?>
 </div>
 </div>
 <?php echo $this->element('footer'); ?>
+</div>
 </div>
 <?php echo $this->element('sql_dump'); ?>
 <?php //pr(User::get()); ?>

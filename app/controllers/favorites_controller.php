@@ -8,14 +8,14 @@
  * @package     app.controllers.favorites
  */
 class FavoritesController extends AppController {
-  
+
   /**
    * Before filter function redefinition
    * @see Controller::beforeFilter
    */
   function beforeFilter() {
     parent::beforeFilter();
-    $this->models = array_keys(Configure::read('Favorites.models'));
+    $this->models = array_keys(Configure::read('App.favorites.models'),true);
     foreach ($this->models as $model) {
       $this->$model = ClassRegistry::init($model);
       $this->Favorite->bindModel(
@@ -25,32 +25,13 @@ class FavoritesController extends AppController {
       );
     }
   }
-  
-  /**
-   * Index: list of favorited items for a given model
-   * @param string $model 
-   */
-  function index($model = 'all') {
-    if ($model == 'all') {
-      $model = $this->models;
-    } else {
-      if (!in_array($model, $this->models))
-        $model = $this->models;
-      else $model = array($model);
-    }
-    $favorites = $this->Favorite->find('all', array(
-      'contain' => $model,
-      'order' => array('Favorite.created' => 'desc')
-    ));
-    $this->set(compact('favorites', 'model'));
-  }
-  
+
   /**
    * Add a favorite for a given user
    * @param UUID $id
    * @param string $model
    */
-  function add($id = null, $model = false) {
+  function add($id, $model = false) {
     $userId = User::get('id');
     $favorite = $this->Favorite->find('first', array(
       'conditions' => array('user_id' => $userId, 'foreign_id' => $id)
@@ -65,32 +46,33 @@ class FavoritesController extends AppController {
       $this->Favorite->save();
       $this->Favorite->load(User::get('id'));
       $msg = __('This record was successfully starred!', true);
-      return $this->Message->add($msg, 'notice');
+      return $this->Message->notice($msg,true);
     }
     $msg = __('This record was already starred!', true);
-    $this->Message->add($msg, 'warning');
+    $this->Message->warning($msg,true);
   }
-  
+
   /**
    * Unfav/unstar a given record for a given model
    *
-   * @param UUID $id
-   * @param string $model
+   * @param UUID $id of the resource
+   * @param string $model name
    */
-  function delete($id = null, $model = false) {
+  function delete($id,$model = false) {
     $userId = User::get('id');
     $favorite = $this->Favorite->find('first', array(
       'conditions' => array('user_id' => $userId, 'foreign_id' => $id)
     ));
-    $model = empty($model) ? 'object' : low($model);
+    $model = empty($model) ? 'object' : strtolower($model);
     if (empty($favorite)) {
-      $msg = __('Uh oh, playing some tricks on me?! This record was not starred in the first place!');
-      return $this->Message->add($msg, 'warning');
+      $msg = __('Uh oh?! This record was not starred in the first place!',true);
+      return $this->Message->add($msg, 'warning',true);
     }
-    $this->Favorite->del($favorite['Favorite']['id']);
+    $this->Favorite->delete($favorite['Favorite']['id']);
     $this->Favorite->load(User::get('id'));
     $msg = __('This record was sucessfully removed from your starred item list.', true);
-    $this->Message->add($msg, 'notice');
+    $this->Message->notice($message,true);
+    //exit;
   }
+
 }//_EOF
-?>

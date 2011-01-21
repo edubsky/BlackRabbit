@@ -14,21 +14,21 @@ class MyFormHelper extends FormHelper {
    */
   function input($fieldName, $options = array()){
     if(isset($options['class']) && strstr('required',$options['class'])) {
-      $options['label'] .= $this->required(); 
+      $options['label'] .= $this->required();
     }
     return parent::input($fieldName, $options)."\n";
   }
-  
+
   /**
    * Required field special marker
    */
   function required(){
     return ' <span class="required">*</span>';
   }
-  
+
   /**
    * Cancel button shortcut
-   * @todo use system history 
+   * @todo use system history
    */
   function cancel(){
     return '<div class="submit cancel"><a href="javascript:history.go(-1);">« '.__('cancel',true).'</a></div>'."\n";
@@ -53,7 +53,7 @@ class MyFormHelper extends FormHelper {
    */
   function error($field, $text = null, $options = array()) {
     $defaults = array('wrap' => 'p', 'class' => 'message error', 'escape' => true);
-    $options = am($defaults,$options);
+    $options = array_merge($defaults,$options);
     return parent::error($field,$text,$options);
   }
 }//_EOF

@@ -9,7 +9,7 @@ $(document).ready(function(){
   $('html').css('font-size', originalFontSize);
   });
   // Increase Font Size
-  $(".increaseFont").click(function(){
+  $(".fontResize.increase").click(function(){
   	var currentFontSize = $('html').css('font-size');
  	var currentFontSizeNum = parseFloat(currentFontSize, 10);
     var newFontSize = currentFontSizeNum*1.2;
@@ -17,7 +17,7 @@ $(document).ready(function(){
 	return false;
   });
   // Decrease Font Size
-  $(".decreaseFont").click(function(){
+  $(".fontResize.decrease").click(function(){
   	var currentFontSize = $('html').css('font-size');
  	var currentFontSizeNum = parseFloat(currentFontSize, 10);
     var newFontSize = currentFontSizeNum*0.8;

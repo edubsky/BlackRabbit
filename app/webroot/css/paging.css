@@ -1,15 +1,14 @@
 /* Paging */
 .paging{
   background:#fff;
-  margin:0 0 5px 0;
   float:left;
   clear:both;
   width:100%;
 }
 .paging .counter{
   color:#777;
-  margin:0 0 5px 10px;
-  padding:5px 0px;
+  margin-left:10px;
+  padding-top:0.4em;;
   float:left;
 }
 .paging .pages{
@@ -26,7 +25,6 @@
 .paging .pages .next,
 .paging .pages .disabled,
 .paging .pages .current{
-  margin:0;
   padding:4px 8px;
   margin-right:4px;
   text-align:center
@@ -57,8 +55,8 @@
 }
 .paging .limit{
   color:#333;
-  margin:0 0 5px 10px;
-  padding:5px 0px;
+  margin-left:10px;
+  padding-top:5px;
   float:left;
   clear:right;
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * SQL Dump element.  Dumps out SQL log information 
+ * SQL Dump element.  Dumps out SQL log information
  *
  * PHP versions 4 and 5
  *
@@ -38,9 +38,10 @@ foreach ($logs as $source => $logInfo):
 	printf(
 		'<table class="cake-sql-log" id="cakeSqlLog_%s" summary="Cake SQL Log" cellspacing="0" border = "0">',
 		preg_replace('/[^A-Za-z0-9_]/', '_', uniqid(time(), true))
-	);
+	); echo "\n  ";
 	printf('<caption>(%s) %s %s took %s ms</caption>', $source, $logInfo['count'], $text, $logInfo['time']);
 ?>
+
   <thead>
     <tr><th>Nr</th><th>Query</th><th>Error</th><th>Affected</th><th>Num. rows</th><th>Took (ms)</th></tr>
   </thead>

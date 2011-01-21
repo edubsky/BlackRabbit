@@ -9,7 +9,7 @@
 class ActionsHelper extends Apphelper {
   var $helpers = array('Html');
   var $model;
-  
+
   /**
    * Before Render hook function
    * @see AppHelper::beforeRender
@@ -34,7 +34,7 @@ class ActionsHelper extends Apphelper {
     if (isset($this->params['pass'][0])) {
       $defaults['tab'] = $this->params['pass'][0];
     }
-    $options = am($defaults,$options);
+    $options = array_merge($defaults,$options);
     $actions = $this->model->get($options);
     return $actions;
   }

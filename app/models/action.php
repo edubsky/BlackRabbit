@@ -7,12 +7,12 @@
  * @package     app.model.action
  *
  * This Model is responsible for providing the actions to the site
- * depending on what context/section the user is visiting/requesting 
+ * depending on what context/section the user is visiting/requesting
  * & his/her role or user rights.
  */
 class Action extends AppModel{
   var $useTable = false; // content is not stored in DB
-  
+
   /**
    * Get the actions for a given section & role
    * @param $section name
@@ -29,12 +29,12 @@ class Action extends AppModel{
     if($options['action'] == 'index' && !isset($options['tab'])){
       $defaultOptions['tab'] = '*';
     }
-    
+
     // Override defaults options with given (if any)
-    $options = am($defaultOptions,$options);
+    $options = array_merge($defaultOptions,$options);
     // get the action list
     $map = $this->__get($options);
-    
+
     //format the action with url, class, options
     foreach($map as $k => $item) {
       list($controller,$action) = explode(':',$item);
@@ -42,7 +42,7 @@ class Action extends AppModel{
       $results[$k]['name'] = Action::getName($action,$controller,$options['shortName']);
       $results[$k]['url'] = DS . $controller . DS . $action;
       $results[$k]['options']['class'] = $controller . ' ' . $action;
-      $results[$k]['options']['disabled'] = !User::isAllowed($controller,$action);
+      $results[$k]['options']['disabled'] = !User::isAuthorized($controller,$action);
     }
     return $results;
   }
@@ -58,8 +58,8 @@ class Action extends AppModel{
     $controller = $options['controller'];
     $action = $options['action'];
     $context = $options['context'];
-    
-    // if tab defined use it 
+
+    // if tab defined use it
     $item = ':'.$action;
     if(isset($options['tab'])) {
       $item .= ':'.$options['tab'];

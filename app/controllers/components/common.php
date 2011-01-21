@@ -5,15 +5,15 @@
  * @copyright   2010 (c) Greenpeace International
  * @author      remy.bertot@greenpeace.org
  * @package app.controllers.components.common
- * 
- * This class serves as a namespace for functions that need to 
+ *
+ * This class serves as a namespace for functions that need to
  * be globally available statically within this application.
  */
 class Common extends Object {
-  
+
   /**
    * Instanciate and return the reference to a model object
-   * @param string name $model 
+   * @param string name $model
    * @return model $ModelObj
    */
   function &getModel($model) {
@@ -31,10 +31,10 @@ class Common extends Object {
     }
     return $ModelObj;
   }
-  
+
   /**
    * Instanciate and return the reference to a component object
-   * @param string name $component 
+   * @param string name $component
    * @return model $component
    */
   function &getComponent($component) {
@@ -57,12 +57,12 @@ class Common extends Object {
     }
     return $Component;
   }
-  
+
   /**
-   * Works just like php's date() function, but $now will default 
+   * Works just like php's date() function, but $now will default
    * to UTC+0 time instead of the servers
    * @todo user pref if available
-   * 
+   *
    * @param unknown $format
    * @param unknown $now
    * @return void
@@ -72,7 +72,7 @@ class Common extends Object {
     Common::defaultTo($now, Common::utcTime(), null);
     return date($format, $now);
   }
-  
+
   /**
    * undocumented function
    *
@@ -82,7 +82,7 @@ class Common extends Object {
   function utcTime() {
     return strtotime(gmdate('Y-m-d H:i:s'));
   }
-  
+
   /**
    * undocumented function
    *
@@ -103,8 +103,8 @@ class Common extends Object {
       $rawMatch = trim($rawMatch);
       $allowedObject = trim($allowedObject);
       $allowedProperty = trim($allowedProperty);
-      $allowedObject = r('*', '.*', $allowedObject);
-      $allowedProperty = r('*', '.*', $allowedProperty);
+      $allowedObject = str_replace('*', '.*', $allowedObject);
+      $allowedProperty = str_replace('*', '.*', $allowedProperty);
 
       $negativeCondition = false;
       if (substr($allowedObject, 0, 1) == '!') {
@@ -118,7 +118,7 @@ class Common extends Object {
     }
     return $allowed;
   }
-  
+
   /**
    * Role / User law
    * @param $a
@@ -126,13 +126,9 @@ class Common extends Object {
    * @return bool
    */
   static function RoleVsUserRights($a,$b){
-    if($a && $b){        // 1  1 = 1
-      return 1;          // 1  0 = 0
-    }else {              // 0  1 = 0
-      return 0;          // 0  0 = 0
-    }
+    return ($a && $b);
   }
-  
+
   /**
    * Return the id of the head of the master branch (version number)
    * This id is used to detect if cache should be purged for CSS caching
@@ -152,7 +148,7 @@ class Common extends Object {
     preg_match('/^[a-z0-9]+/', file_get_contents($versFile), $match);
     return $match[0];
   }
-  
+
   /**
    * Indicates if a given string is a UUID
    * @param string $str
@@ -161,12 +157,12 @@ class Common extends Object {
   static function isUuid($str) {
     return is_string($str) && preg_match('/^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$/', $str);
   }
-  
+
   /**
    * Return a UUID - ref. String::uuid();
    * @return uuid
    */
-  static function uuid(){
+  static function uuid($seed=null){
     return String::uuid();
   }
 
@@ -177,12 +173,12 @@ class Common extends Object {
    * @access public
    */
   static function isProduction() {
-    $domain = r('http://', '', Configure::read('App.domain.production'));
-    $domain = r('staging.', '', $domain);
-    $host = r('www.', '', env('HTTP_HOST'));
+    $domain = str_replace('http://', '', Configure::read('App.domain.production'));
+    $domain = str_replace('staging.', '', $domain);
+    $host = str_replace('www.', '', env('HTTP_HOST'));
     return strpos($host, $domain) === 0 || Configure::read('App.environment') == 'production';
   }
-  
+
   /**
    * undocumented function
    *
@@ -190,13 +186,13 @@ class Common extends Object {
    * @access public
    */
   static function isStaging() {
-    $domain = r('http://', '', Configure::read('App.domain.staging'));
-    $domain = r('www.', '', $domain);
-    $domain = r('staging.', '', $domain);
-    $host = r('www.', '', env('HTTP_HOST'));
+    $domain = str_replace('http://', '', Configure::read('App.domain.staging'));
+    $domain = str_replace('www.', '', $domain);
+    $domain = str_replace('staging.', '', $domain);
+    $host = str_replace('www.', '', env('HTTP_HOST'));
     return strpos($host, $domain) !== false || Configure::read('App.environment') == 'staging';
   }
-  
+
   /**
    * undocumented function
    *
@@ -204,16 +200,16 @@ class Common extends Object {
    * @access public
    */
   static function isDevelopment() {
-    $domain = r('http://', '', Configure::read('App.domain.development'));
-    $domain = r('www.', '', $domain);
-    $domain = r('staging.', '', $domain);
-    $host = r('www.', '', env('HTTP_HOST'));
+    $domain = str_replace('http://', '', Configure::read('App.domain.development'));
+    $domain = str_replace('www.', '', $domain);
+    $domain = str_replace('staging.', '', $domain);
+    $host = str_replace('www.', '', env('HTTP_HOST'));
     return !Common::isProduction() && !Common::isStaging()
         || strpos($host, 'localwhiterabbit') !== false
         || strpos($host, 'dev.' . $domain) !== false
         || Configure::read('App.environment') == 'development';
   }
-  
+
   /**
    * undocumented function
    *
@@ -224,7 +220,7 @@ class Common extends Object {
     $Session = Common::getComponent('Session');
     prd($Session->read('Message.email'));
   }
-  
+
   /**
    * undocumented function
    *
@@ -250,7 +246,7 @@ class Common extends Object {
     }
     return $deletedOne;
   }
-  
+
   /**
    * undocumented function
    *

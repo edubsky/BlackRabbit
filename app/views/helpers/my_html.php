@@ -52,7 +52,7 @@ class MyHtmlHelper extends HtmlHelper {
       'class' => '',
       'wrap' => false
     );
-    $options = am($defaultOptions, $options);
+    $options = array_merge($defaultOptions, $options);
     if(isset($options['disabled']) && $options['disabled']) {
       if($this->DisplaySettings->showDisabledLinks()) {
         $link = '<span class="link disabled '.$options['class'].'">'.$title.'</span>';
@@ -65,5 +65,4 @@ class MyHtmlHelper extends HtmlHelper {
     }
     return $link;
   }
-}//_EOF 
-?>
+}//_EOF

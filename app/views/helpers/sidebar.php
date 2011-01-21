@@ -9,7 +9,7 @@
 class SidebarHelper extends Apphelper {
   var $helpers = array('Html');
   var $model;
-  
+
   /**
    * Before Render hook function
    * @see AppHelper::beforeRender
@@ -31,7 +31,7 @@ class SidebarHelper extends Apphelper {
       'action'     => $this->params['action'],
       'section'    => $section
     );
-    $options = am($defaults,$options);
+    $options = array_merge($defaults,$options);
     $sidebar = $this->model->get($options);
     return $sidebar;
   }
