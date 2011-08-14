@@ -4,30 +4,43 @@
  *
  * @copyright   2010 (c) Greenpeace International
  * @author      remy.bertot@greenpeace.org
- * @package app.controllers.components.common
+ * @package     app.controllers.components.common
  *
  * This class serves as a namespace for functions that need to
- * be globally available statically within this application.
+ * be globally available (statically mostly) within this application.
  */
 class Common extends Object {
+
+  /**
+   * Check if application cookie is set
+   * @param boolean $warn display warning message
+   * @return void
+   * @access public
+   */
+  function isCookieSet($warn=true) {
+    if (!isset($_COOKIE[Configure::read('Session.cookie')])) {
+      if($warn) {
+        //TODO add javascript / css trick
+        $this->Controller->Message->warning(
+          'WARNING_COOKIES_MUST_BE_ENABLED',
+          __('Cookies must be enabled past this point.',true)
+        );
+      }
+      return false;
+    }
+    return true;
+  }
 
   /**
    * Instanciate and return the reference to a model object
    * @param string name $model
    * @return model $ModelObj
    */
-  function &getModel($model) {
-    $modelClass = Inflector::camelize($model);
-    if (!class_exists($modelClass) && !loadModel($modelClass)) {
-      $tmp = false;
-      return $tmp;
-    }
-    $modelKey = Inflector::underscore($modelClass);
-    if (ClassRegistry::isKeySet($modelKey)) {
-      $ModelObj =& ClassRegistry::getObject($modelKey);
+  static function &getModel($model,$create=false) {
+    if (ClassRegistry::isKeySet($model) && !$create) {
+      $ModelObj =& ClassRegistry::getObject($model);
     } else {
-      $ModelObj =& new $modelClass();
-      ClassRegistry::addObject($modelKey, $ModelObj);
+      $ModelObj =& ClassRegistry::init($model);
     }
     return $ModelObj;
   }
@@ -37,7 +50,7 @@ class Common extends Object {
    * @param string name $component
    * @return model $component
    */
-  function &getComponent($component) {
+  static function &getComponent($component) {
     $componentKey = 'Component.'.$component;
     $Component = null;
     if (ClassRegistry::isKeySet($componentKey)) {
@@ -67,7 +80,7 @@ class Common extends Object {
    * @param unknown $now
    * @return void
    * @access public
-   */
+   *
   function utcDate($format, $now = null) {
     Common::defaultTo($now, Common::utcTime(), null);
     return date($format, $now);
@@ -78,11 +91,11 @@ class Common extends Object {
    *
    * @return void
    * @access public
-   */
+   *
   function utcTime() {
     return strtotime(gmdate('Y-m-d H:i:s'));
   }
-
+  */
   /**
    * undocumented function
    *
@@ -96,7 +109,9 @@ class Common extends Object {
   function requestAllowed($object, $property, $rules, $default = false) {
     $allowed = $default;
 
-    preg_match_all('/\s?([^:,]+):([^,:]+)/is', $rules, $matches, PREG_SET_ORDER);
+    preg_match_all(
+      '/\s?([^:,]+):([^,:]+)/is',$rules, $matches,PREG_SET_ORDER
+    );
 
     foreach ($matches as $match) {
       list($rawMatch, $allowedObject, $allowedProperty) = $match;
@@ -117,16 +132,6 @@ class Common extends Object {
       }
     }
     return $allowed;
-  }
-
-  /**
-   * Role / User law
-   * @param $a
-   * @param $b
-   * @return bool
-   */
-  static function RoleVsUserRights($a,$b){
-    return ($a && $b);
   }
 
   /**
@@ -167,69 +172,14 @@ class Common extends Object {
   }
 
   /**
-   * undocumented function
-   *
-   * @return void
-   * @access public
-   */
-  static function isProduction() {
-    $domain = str_replace('http://', '', Configure::read('App.domain.production'));
-    $domain = str_replace('staging.', '', $domain);
-    $host = str_replace('www.', '', env('HTTP_HOST'));
-    return strpos($host, $domain) === 0 || Configure::read('App.environment') == 'production';
-  }
-
-  /**
-   * undocumented function
-   *
-   * @return void
-   * @access public
-   */
-  static function isStaging() {
-    $domain = str_replace('http://', '', Configure::read('App.domain.staging'));
-    $domain = str_replace('www.', '', $domain);
-    $domain = str_replace('staging.', '', $domain);
-    $host = str_replace('www.', '', env('HTTP_HOST'));
-    return strpos($host, $domain) !== false || Configure::read('App.environment') == 'staging';
-  }
-
-  /**
-   * undocumented function
-   *
-   * @return void
-   * @access public
-   */
-  static function isDevelopment() {
-    $domain = str_replace('http://', '', Configure::read('App.domain.development'));
-    $domain = str_replace('www.', '', $domain);
-    $domain = str_replace('staging.', '', $domain);
-    $host = str_replace('www.', '', env('HTTP_HOST'));
-    return !Common::isProduction() && !Common::isStaging()
-        || strpos($host, 'localwhiterabbit') !== false
-        || strpos($host, 'dev.' . $domain) !== false
-        || Configure::read('App.environment') == 'development';
-  }
-
-  /**
-   * undocumented function
-   *
-   * @return void
-   * @access public
-   */
-  function debugEmail() {
-    $Session = Common::getComponent('Session');
-    prd($Session->read('Message.email'));
-  }
-
-  /**
-   * undocumented function
+   * Delete files in a given directory
    *
    * @param string $path
    * @param string $pattern
    * @return void
    * @access public
    */
-  function deleteFilesInDir($path, $pattern = '.*') {
+  function deleteFiles($path, $pattern = '.*') {
     $pattern = '/'.$pattern.'/';
     $deletedOne = false;
     if ($handle = opendir($path)) {
@@ -255,7 +205,7 @@ class Common extends Object {
    * @return void
    * @access public
    */
-  function randomString($length = 6, $whitelist = array()) {
+  static function randomString($length = 6, $whitelist = array()) {
     if ($length < 1) {
       trigger_error('Common::randomString() may not be called with a length < 1');
     }
@@ -269,5 +219,4 @@ class Common extends Object {
     }
     return $result;
   }
-}
-?>
+}//_EOF

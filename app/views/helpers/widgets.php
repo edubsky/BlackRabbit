@@ -16,12 +16,12 @@ class WidgetsHelper extends Helper {
   <div class="widget">
     <div class="widget_header">
       <h3>
-        <a href="<?php echo Router::url(); ?>" class="toggle open with_icon <?php echo $id; ?>" id="<?php echo $id; ?>">
+        <a href="<?php echo Router::url(); ?>" class="js_toggle open with_icon <?php echo $id; ?>" id="<?php echo $id; ?>">
           <span><?php echo $name; ?></span>
         </a>
       </h3>
     </div>
-    <div class="widget_content toggle_wrapper_<?php echo $id; ?>">
+    <div class="widget_content js_toggle_<?php echo $id; ?>">
 <?php
   }
 

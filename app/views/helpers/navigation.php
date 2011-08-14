@@ -17,7 +17,7 @@ class NavigationHelper extends Apphelper {
    */
   function beforeRender(){
     if(!isset($this->model)){
-      $this->model = ClassRegistry::init('Navigation'); // initialize model or get it back
+      $this->model = Common::getModel('Navigation'); // initialize model or get it back
     }
   }
 
@@ -30,7 +30,7 @@ class NavigationHelper extends Apphelper {
     $result = false;
 
     $link = $itemList[$itemName]['pattern'];
-	$currentLocation = substr($this->here, strlen($this->base));
+    $currentLocation = substr($this->here, strlen($this->base));
 
     $result = ($link == $currentLocation || strpos($link, '#') === 0
       && preg_match(substr($link, 1), $currentLocation));
@@ -68,10 +68,10 @@ class NavigationHelper extends Apphelper {
    */
   function getDefaultOptions(){
     return array(
-      'div'    => false,          // extra div wrapper? class name it!
+      'div'    => false,                 // extra div wrapper? class name it!
       'class'  => 'sub menu with_tabs', // extra class
-      'id'     => ''             // not the id of the menu, but the id of the div
+      'id'     => ''                   // not the id of the menu, but the id of the div
     );
   }
 }
-?>
+//_EOF

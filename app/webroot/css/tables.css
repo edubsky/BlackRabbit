@@ -16,8 +16,10 @@ table tr th {
   background: #d4d2d2 url(../img/layout/bg_table_header.png) right 0 repeat-x;
   font-weight:bold;
 }
+table tr:hover {
+  background-color:#fafafa;
+}
 table tr td {
-  background:#fff;
   border:1px solid #ccc;
   padding:4px;
   text-align:center;

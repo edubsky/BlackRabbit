@@ -24,14 +24,12 @@
           'class' => 'required',
           'label' => __('Username (email)',true),
           'tabindex' => ++$tabindex,
-          /* Paranoia inside
-           'error' => array(
-            'valid' => __('This is not a valid email address',true)
-           )*/
+          /*'error' => array(
+            'email' => __('This is not a valid email address format.',true)
+          )*/
         ));?>
       </fieldset>
       <?php echo $this->MyForm->submit(__('recover password',true).' »', array(
-         'label' => __('recover password',true).' »',
          'tabindex' => ++$tabindex
        )); ?>
     <?php echo $this->MyForm->end(); ?>

@@ -44,8 +44,8 @@ class MyFormHelper extends FormHelper {
   /**
    * See FormHelper::submit
    */
-  function submit($options){
-    return parent::submit($options)."\n";
+  function submit($name, $options=array()){
+    return parent::submit($name, $options)."\n";
   }
 
   /**

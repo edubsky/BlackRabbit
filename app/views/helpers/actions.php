@@ -16,7 +16,7 @@ class ActionsHelper extends Apphelper {
    */
   function beforeRender(){
     if(!isset($this->model)){
-      $this->model = ClassRegistry::init('Action'); // initialize model or get it back
+      $this->model = Common::getModel('Action'); // initialize model or get it back
     }
   }
 

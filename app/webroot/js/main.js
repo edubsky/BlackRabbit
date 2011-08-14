@@ -10,19 +10,19 @@ $(function() {
     return this.animate({opacity: 'toggle', height: 'toggle'}, speed, easing, callback);
   };
   // Initialization 
-  $(".toggle.closed").each(function() {
+  $(".js_toggle.closed").each(function() {
     $(".wrapper_"+$(this).attr("id")).hide();
   })
-  // a.toggle#id triggers closing/opening of .toggle_wrapper_#id (easy hey?)
-  $('a.toggle').click(function() {
-    if ($('a.toggle#' + $(this).attr("id")).hasClass("closed")) {
-      $('a.toggle#' + $(this).attr("id")).addClass("open").removeClass("closed");
-      $('a.toggle#' + $(this).attr("id")).parents('.widget').addClass("open").removeClass("closed");
-      $(".toggle_wrapper_" + $(this).attr("id")).show();
+  // a.toggle#<id> triggers closing/opening of .toggle_<id> (easy hey?)
+  $('a.js_toggle').click(function() {
+    if ($('a.js_toggle#' + $(this).attr("id")).hasClass("closed")) {
+      $('a.js_toggle#' + $(this).attr("id")).addClass("open").removeClass("closed");
+      $('a.js_toggle#' + $(this).attr("id")).parents('.widget').addClass("open").removeClass("closed");
+      $(".js_toggle_" + $(this).attr("id")).show();
     } else {
-      $('a.toggle#' + $(this).attr("id")).addClass("closed").removeClass("open");
-      $('a.toggle#' + $(this).attr("id")).parents('.widget').addClass("closed").removeClass("open");
-      $(".toggle_wrapper_" + $(this).attr("id")).hide();
+      $('a.js_toggle#' + $(this).attr("id")).addClass("closed").removeClass("open");
+      $('a.js_toggle#' + $(this).attr("id")).parents('.widget').addClass("closed").removeClass("open");
+      $(".js_toggle_" + $(this).attr("id")).hide();
     }
     //$('#right_sidebar a.save-widgets').text(saveWidgetsText); // save the choice
     return false;
@@ -32,7 +32,7 @@ $(function() {
    * Checkbox select all behavior  
    * One checkbox to rule them all!
    */
-  $('input.select_all').click(function() {
+  $('input.js_select_all').click(function() {
     var check = false;
     if($(this).attr("checked")!= undefined && $(this).attr("checked")) {
       check = true;
@@ -41,14 +41,6 @@ $(function() {
       this.checked = check;
     })
   });
-  
-  /**
-   * Cookie check
-   * Hide warning message if the cookie support is enabled
-   */
-   if(navigator.cookieEnabled) {
-     $('.message.cookies_must_be_enabled').hide();
-   }
 });
 /**
  * NON JQUERY STUFFS - LAND OF EVIL

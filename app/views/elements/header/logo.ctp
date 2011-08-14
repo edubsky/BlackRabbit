@@ -8,7 +8,7 @@
  */
 ?>
   <h1>
-    <a href="<?php echo Router::url('/home'); ?>" class='logo'>
+    <a href="<?php echo Router::url('/'); ?>" class='logo'>
       <span><?php echo Configure::Read('App.name'); ?></span>
     </a>
   </h1>

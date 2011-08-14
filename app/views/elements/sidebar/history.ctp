@@ -14,7 +14,8 @@
 <?php foreach($history as $i => $log) :
 ?>
         <li><?php
-          $label = $log['UserLog']['resource'].' '.$log['UserLog']['action'].' ('.$log['UserLog']['created'].')';
+          $label = $log['UserLog']['resource'].' '.$log['UserLog']['action'].' ('.
+            $this->DisplaySettings->date($log['UserLog']['created']).')';
           echo $this->MyHtml->link($label, array(
             'controller' => $log['UserLog']['resource'],
             'action' => $log['UserLog']['action'] . DS . $log['UserLog']['get_data_url'],

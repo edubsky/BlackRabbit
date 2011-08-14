@@ -7,11 +7,11 @@
  * @package     app.views.elements.emails.text.forgot_password
  */
 ?>
-Hello <?php echo ucfirst($user['Person']['firstname']); ?>,
+<?php echo sprintf(__('Hello %s',true), ucfirst($user['Person']['firstname'])); ?>,
 
-In order to reset your password please follow the link below:
-<?php //echo $auth['reset_link']; ?>
+<?php echo __('In order to reset your password please follow the link below'); ?>:
+<?php echo Router::url('/',true).'password'.DS.'reset'.DS.$user['User']['key']; ?>
 
-If you did not request this password recovery, please disregard this message.
+<?php echo __('If you did not request this password recovery, please disregard this message.'); ?>
 
 <?php echo $this->element('email'.DS.'text'.DS.'signature'); ?>

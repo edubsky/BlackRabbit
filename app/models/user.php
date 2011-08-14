@@ -9,16 +9,19 @@
 class User extends AppModel {
   var $displayField = 'name';
 
+  /**
+   * Relationships
+   */
   var $belongsTo = array(
+    'Timezone',
+    'Language',
     'Person',
     'Office',
     'Role'
   );
-
   var $hasOne = array(
     'Preference'
   );
-
   var $hasMany = array(
     'AuthKey' => array(
       'dependent' => true
@@ -35,24 +38,28 @@ class User extends AppModel {
    */
   var $validate = array(
     'username' => array(
-      'valid' => array(
-        'rule' => 'email'
+      'email' => array(
+        'rule' => 'email',
+      ),
+      'length' => array(
+        'rule' => array('between', 6, 150)
+      ),
+      'unique' => array(
+        'rule' => 'isUnique',
       )
-      // , 'unique' => array(
-      //   'rule' => 'validateUnique',
-      //   'field' => 'login', 'message' =>
-      //   'This email is already used by another account.'
-      // )
     ),
-/*    'password' => array(
-      'required' => array(
-        'rule' => array('minLength', 8)
+    'password' => array(
+      'length' => array(
+        'rule' => array('between', 5, 50)
       ),
       'confirmed' => array(
-        'rule' => 'validateConfirmed',
-        'confirm' => 'repeat_password'
+        'rule' => array('isConfirmed','User.password_again')
       )
-    )*/
+      /* TODO Dictionary check with cracklib
+      'cracklib' => array(
+        'rule' => array('isNotInDictionary')
+      ) */
+    )
   );
 
   /**
@@ -120,8 +127,8 @@ class User extends AppModel {
    * @param bool $generateAuthCookie
    */
   static function setActive($user = null, $find=true) {
-    $_this = ClassRegistry::init('User');
-    //@todo only find if $user is incomplete compared to conditions
+    $_this = Common::getModel('User');
+    //@TODO only fetch if $user is incomplete compared to find conditions
     if($find) {
       if ($user!='guest' && isset($user['User']['id']) && Common::isUuid($user['User']['id'])) {
         $user = $_this->find('first',
@@ -134,6 +141,9 @@ class User extends AppModel {
         );
       }
     }
+    if (isset($user['User']['password'])) {
+      unset($user['User']['password']); // just to make sure
+    }
     Configure::write('User', $user);
     $Session = Common::getComponent('Session');
     $Session->write('User', $user);
@@ -141,7 +151,7 @@ class User extends AppModel {
   }
 
   /**
-   * Return the find options to be used
+   * STATIC - Return the find options to be used
    * @param string context
    * @return array
    */
@@ -153,15 +163,15 @@ class User extends AppModel {
   }
 
   /**
-   * STATIC - Return the conditions to be used
-   * to activate a User
+   * STATIC - Return the conditions to be used for a given context
+   * for example if you want to activate a User session
    * @param $context string{guest or id}
-   * @param $id User.id
+   * @param $data used in find conditions (such as User.id)
    * @return $condition array
    */
-  static function getFindConditions($case="guestActivation",&$data=null){
-    switch($case){
-      case "login":
+  static function getFindConditions($case='guestActivation',&$data=null) {
+    switch($case) {
+      case 'login':
         $conditions = array(
          'conditions' => array(
            'User.password' => $data['User']['password'],
@@ -169,14 +179,14 @@ class User extends AppModel {
          )
        );
       break;
-      case "forgot_password":
+      case 'forgotPassword':
         $conditions = array(
          'conditions' => array(
            'User.username' => $data['User']['username'],
          )
         );
       break;
-      case "userActivation":
+      case 'userActivation':
         $conditions = array(
           'conditions' => array(
             'User.id' => $data['User']['id'],
@@ -184,33 +194,45 @@ class User extends AppModel {
           )
         );
       break;
-      case "guestActivation": default:
+      case 'guestActivation': default:
         $conditions = array(
           'conditions' => array(
             'User.username' => 'guest',
           )
         );
       break;
+      case 'resetPasswordLoad':
+        $conditions = array(
+          'conditions' => array(
+            'User.id' => $data['User']['id']
+          )
+        );
+      break;
+      default:
+        throw new exception('ERROR: User::GetFindConditions case undefined');
+        //$fields = array();
+      break;
     }
     return $conditions;
   }
 
   /**
-   * STATIC - Return the conditions to be used
-   * to activate a User
+   * STATIC - Return the list of field to fetch for given context
    * @param string $case context ex: login, activation
    * @return $condition array
    */
   static function getFindFields($case="guestActivation"){
     switch($case){
-      case "login":
+      case 'login':
+      case 'resetPasswordLoad':
+      case 'resetPasswordSave':
         $fields = array(
           'fields' => array(
-            'User.active'
+            'User.id', 'User.active'
           )
         );
       break;
-      case "forgot_password":
+      case 'forgotPassword':
         $fields = array(
           'contain' => array(
             'Person'
@@ -221,36 +243,43 @@ class User extends AppModel {
           )
         );
       break;
-      case "guestActivation":
+      case 'guestActivation':
         $fields = array(
           'contain' => array(
             'Role(id,permissions,name)',
-            'Preference(*)',
-            'Person'
+            'Preference(*)'
           ),
           'fields' => array(
             'User.id', 'User.username', 'User.permissions',
-            'User.locale', 'User.active',
-            'User.person_id', 'Person.firstname', 'Person.lastname'
+            'User.active'
           )
         );
       break;
-      case "userActivation":
+      case 'userActivation':
         $fields = array(
           'contain' => array(
             'Role(id,permissions,name)',
+            'Timezone(id,name)',
+            'Language(id,name,ISO_639-2-alpha2,ISO_639-2-alpha1)',
             'Preference(*)',
-            'Person'
+            'Person(id,firstname,lastname)'
             //'Office(name,acronym,region,type)',
           ),
           'fields' => array(
             'User.id', 'User.username', 'User.permissions',
-            'User.locale', 'User.active',
-            'User.person_id', 'Person.firstname', 'Person.lastname'
+            'User.active'
           )
         );
       break;
-
+      default:
+        throw new exception('ERROR: User::GetFindFields case undefined');
+      break;
+    }
+    // get additional data if we could to activate afterwards
+    if ($case == 'login' || $case == 'resetPasswordSave') {
+      $fields = array_merge_recursive(
+        $fields, User::getFindFields('userActivation')
+      );
     }
     return $fields;
   }
@@ -262,10 +291,33 @@ class User extends AppModel {
    * @param string $rules - something like "*:*,!users:delete"
    */
   static function isAuthorized($ressource, $property){
-    return (Common::RoleVsUserRights(
-      Common::requestAllowed($ressource, $property, User::get('Role.permissions')),
-      Common::requestAllowed($ressource, $property, User::get('User.permissions'))
-    ));
+    return Common::requestAllowed(
+      $ressource, $property,
+      User::get('Role.permissions').','.User::get('User.permissions')
+    );
   }
 
+  /**
+   * Set and return the validation rules for a given context
+   * @param string $case
+   * @return array $rules, fieldlist
+   */
+   function getValidationRules($case) {
+    switch($case) {
+     case 'login':
+       $rules = array('fieldList' => array('username','password'));
+       unset($this->validate['password']['confirmed']);
+     break;
+     case 'forgotPassword':
+       $rules = array('fieldList' => array('username'));
+       unset($this->validate['username']['unique']);
+     return $rules;
+     case 'resetPasswordSave':
+       $rules = array('fieldlist' => array('password'));
+     return $rules;
+     case 'resetPasswordLoad':
+     default:
+     return null;
+    }
+  }
 }//_EOF

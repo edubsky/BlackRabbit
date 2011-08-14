@@ -20,7 +20,7 @@ class UserLog extends AppModel {
    * @return array $results
    */
   static function get($limit=5){
-    $_this = ClassRegistry::init('UserLog');
+    $_this = Common::getModel('UserLog');
     $results = $_this->find('all', array(
        'fields' => array(
          'resource','resource_id','get_data_url','get_data_named','action','user_id',

@@ -40,8 +40,7 @@ class DisplaySettingsHelper extends Apphelper {
   function viewModelink($display=null,$options=array()){
     $defaults = array(
       'class'    => '',
-      'span'     => true,
-      'tooltip'  => User::get('Preference.gui.tooltip.enabled')
+      'span'     => true
     );
     $options = array_merge($defaults,$options);
     $display = isset($display) ? $display : $this->_selectedDisplay;
@@ -52,13 +51,21 @@ class DisplaySettingsHelper extends Apphelper {
     } elseif (isset($this->viewModeOptions[$display])) {
       $text = $this->viewModeOptions[$display];
     } else return false;
-
-    if($options['span']) // extra wrapper?
+    // wrapping
+    if($options['span']) {
        $text = '<span>'.$text.'</span>';
-    $results = '<a class=\''.$options['class'].' '.$display;
-    if ($options['tooltip'] && isset($help)) // tooltips?
-      $results.= ' minitooltip\' title=\''.$help;
-    $results.= '\' '
+    }
+    $results = '<a class=\'';
+    if(!empty($$options['class'])){
+      $results .= $options['class'].' ';
+    }
+    $results .= $display;
+    // tooltip
+    $tooltip = $this->useTooltips();
+    if ($tooltip && isset($help)) {
+      $results .= ' '.$tooltip.'\' title=\''.ucfirst($help);
+    }
+    $results .= '\' '
       .'href=\''.$this->_baseurl.Configure::read('App.gui.viewModes.urlName').':'.$display.'\'>'
       .$text.'</a>';
 
@@ -71,12 +78,12 @@ class DisplaySettingsHelper extends Apphelper {
    * @param $return return style (bool or string)
    * @return mixed bool true if $display is currently in use, string selected or ''
    */
-  function isViewModeSelected($display,$return=null){
+  function isViewModeSelected($display,$return=null,$trail=' '){
     $return = isset($return) ? $return : 'string';
     $result = ($this->_selectedDisplay == $display);
     switch ($return) {
       case 'string':
-        return ($result ? 'selected' : '');
+        return ($result ? $trail.'selected' : '');
       break;
       default:
         return $result;
@@ -84,10 +91,27 @@ class DisplaySettingsHelper extends Apphelper {
   }
 
   /**
+   * Should we use tooltips?
+   * @param string $return class string or bool
+   * @param bool $override override config with given boolean
+   * @return string/bool $result
+   */
+  function useTooltips($return='class') {
+    $result = User::get('Preference.gui.tooltips.enabled');
+    if($return == 'class') {
+      if($result) {
+        return Configure::read('App.gui.tooltips.class'); // @see icons.css
+      } else return '';
+    } else {
+      return $result;
+    }
+  }
+
+  /**
    * Should we use icons?
-   * @param $return class string or bool
-   * @param $override bool override config with given boolean
-   * @return $result boolean
+   * @param string $return class string or bool
+   * @param bool $override override config with given boolean
+   * @return string/bool $result
    */
   function useIcons($return='class',$override=null){
     //TODO test context & user pref
@@ -173,10 +197,12 @@ class DisplaySettingsHelper extends Apphelper {
    * @param $date timestamp to convert
    */
   function date($date){
-    $format = User::get('Locale.date.format');
-    //@todo timezone
-    return date($format,strtotime($date));
+    $timezone = User::get('Timezone.name');
+    $format = User::get('Preference.gui.date.format');
+    $dtz = new DateTimeZone($timezone);
+    $dt = new DateTime($date);
+    $dt->setTimeZone($dtz);
+    return $dt->format($format);
   }
 
 }//_EOF
-?>

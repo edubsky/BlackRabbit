@@ -4,7 +4,7 @@
  *
  * @copyright   2010 (c) Greenpeace International
  * @author      remy.bertot@greenpeace.org
- * @package     greenpeace.boost.model.role
+ * @package     app.model.role
  */
 class Role extends AppModel {
   var $displayField = 'name';
@@ -13,5 +13,4 @@ class Role extends AppModel {
   var $hasMany = array(
     'User'
   );
-}
-?>
+}//_EOF

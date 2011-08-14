@@ -43,31 +43,31 @@
   margin-bottom:10px;
   margin-right:10px; 
 }
-.view.icon ul li a.read span{
+.view.icon ul li a span{
   overflow:hidden;
   white-space:nowrap;
   width:80px;
   padding:2px 5px;
   float:left;
 }
-.view.icon ul li a.read {
+.view.icon ul li a {
   text-align:center;
   float:left;
   z-index:1;
 }
-.view.icon ul li a.read img {
+.view.icon ul li a img {
   display:inline-block;
   border:1px solid #CCC;
   /*clear:both;*/
   padding:8px;
 }
-.view.icon ul li a.read:hover img {
+.view.icon ul li a:hover img {
   border:1px solid #66CC00;
 }
 .view.icon ul li a.star{
   position:absolute;
   width:12px;
-  margin-left:-95px;
+  margin-left:-90px;
 }
 .view.icon ul li a.star img {
   width:12px;
@@ -75,4 +75,8 @@
   border:0; 
   padding: 5px;
   z-index:2;
+}
+
+.rounded {
+  -moz-border-radius:5px;
 }

@@ -65,5 +65,65 @@ class Project extends AppModel {
       ),
     ),
   );
-}
-?>
+
+  /**
+   * STATIC - Return the find options to be used
+   * @param string context
+   * @return array
+   */
+  static function getFindOptions($case, &$data=null) {
+    return array_merge(
+      Project::getFindConditions($case, &$data),
+      Project::getFindFields($case)
+    );
+  }
+
+  /**
+   * STATIC - Return the find fields to be used for a given context
+   * @param string $case context ex: index:all, edit, etc.
+   * @return $condition array
+   */
+  static function getFindFields($case='all', &$data=null) {
+    switch($case) {
+      case 'index:all':
+      case 'index:archived':
+        $fields = array(
+          'contain' => array(
+            'Favorite(id,user_id,model,created)',
+          ),
+          'fields' => array(
+            'id','name','description','created'
+          )
+        );
+      break;
+      default:
+        throw new exception('ERROR: User::GetFindFields case undefined');
+      break;
+    }
+    return $fields;
+  }
+
+  /**
+   * STATIC - Return the find conditions to be used in a given context
+   * @param string $case context ex: index:all, edit, etc.
+   * @return $condition array
+   */
+  static function getFindConditions($case='all',&$data=null) {
+    switch($case) {
+      case 'index:all':
+        $conditions = array(
+          'conditions' => array('archived'=>'0')
+        );
+      break;
+      case 'index:archived':
+        $conditions = array(
+          'conditions' => array('archived'=>'1')
+        );
+      break;
+      default:
+        throw new exception('ERROR: Project::GetFindConditions case undefined');
+      break;
+    }
+    return $conditions;
+  }
+}//_EOF

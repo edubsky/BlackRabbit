@@ -1,6 +1,6 @@
 <?php
 /**
- * Comments controller 
+ * Comments controller
  * A simple controller to manage page display
  *
  * @copyright   2010 (c) Greenpeace International
@@ -10,6 +10,6 @@
 class CommentsController extends AppController {
   var $name = 'Comments';
   
-}
-
-?>
+  function add() {
+  }
+}//_EOF

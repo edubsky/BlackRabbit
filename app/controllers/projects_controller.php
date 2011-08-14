@@ -16,25 +16,9 @@ class ProjectsController extends AppController {
    * @return void
    * @access public
    */
-  function index($type=null) {
-    $this->Project->recursive = 0;
-    switch($type){
-      case 'archived':
-        $conditions = array('archived' =>'1');
-      break;
-      case 'all': default:
-        $conditions = array('archived'=>'0');
-      break;
-    }
-    $this->paginate = array(
-      'conditions' => $conditions,
-      'contain' => array(
-        'Favorite(id,user_id,model,created)',
-      ),
-      'fields' => array(
-        'id','name','description','created'
-      )
-    );
+  function index($type='all') {
+    // get the results and paginate
+    $this->paginate = Project::getFindOptions('index:'.$type);
     $this->set('projects', $this->paginate());
 
     // view mode
@@ -42,9 +26,6 @@ class ProjectsController extends AppController {
     if($viewMode) {
       $this->render('index_'.$viewMode);
     }
-
-  //  pr(User::get());
-  //  pr($this->Session->read());
   }
 
   /**
@@ -59,7 +40,9 @@ class ProjectsController extends AppController {
         return;
       }
     }
-    $this->Message->error('INVALID_PROJECT_ID',
+    // if the project was not found
+    $this->Message->error(
+      'ERROR_INVALID_PROJECT_ID',
       __('Sorry, this project is invalid or have been deleted', true),
       array('action' => 'index')
     );
@@ -75,13 +58,13 @@ class ProjectsController extends AppController {
       $this->Project->create();
       if ($this->Project->save($this->data)) {
         $this->Message->success(
-          sprintf(__('The project was sucessfully saved (%)', true), $this->Project->id), 
-          array('action'=>'index')
+          sprintf(__('The project was sucessfully saved (%s)', true), $this->Project->id),
+          array('action' => 'index')
         );
       } else {
         $this->Message->error(
-          sprintf(__('Oops, the project could not be saved (%)', true), $this->Project->id),
-          array('action'=>'index')
+          'ERROR_PROJECT_ADD_SAVE',
+          __('Oops, the project could not be saved', true)
         );
       }
     }
@@ -94,49 +77,63 @@ class ProjectsController extends AppController {
    * @access public
    */
   function edit($id = null) {
+    $this->uuid['action'] = 'df8e4a16-8141-11e0-a245-000ae4cc0097';
     // some data where submited
     if (!empty($this->data)) {
+      $this->Project->id = $id;
       if ($this->Project->save($this->data)) {
-        $this->Message->succes(
-          sprintf(__('The project was sucessfully saved (%)', true), $this->Project->id),
-          array('action'=>'index')
+        $this->Message->success(
+          sprintf(__('The project was sucessfully saved (%s)', true), $this->Project->id),
+          array('action' => 'index')
         );
       } else {
         $this->Message->error(
+          'ERROR_PROJECT_EDIT_SAVE',
           sprintf(__('The project could not be saved, please correct the errors bellow (%)', true), $this->Project->id)
         );
       }
-    }
-    if (empty($this->data) && !empty($id) && Common::isUuid($id)) {
-      $project = $this->Project->read(null, $id);
-      if(!empty($project)) {
-        $this->set('project', $this->Project->read(null, $id));
-        return;
+    } else {
+      $error = true;
+      if (!empty($id) && Common::isUuid($id)) {
+        $project = $this->Project->read(null, $id);
+        if(!empty($project)) {
+          $error = false;
+          $this->data =  $project;
+        }
+      }
+      if($error) {
+        $this->Message->error(
+          'ERROR_INVALID_PROJECT_ID',
+          __('Sorry, this project is invalid or have been deleted', true),
+          array('action' => 'index')
+        );
       }
     }
-    $this->Message->error('INVALID_PROJECT_ID',
-      __('Sorry, this project is invalid or have been deleted', true),
-      array('action' => 'index')
-    );
   }
 
   /**
    * Generic Archiving functionality
    */
   function archive($id){
+    $success = false;
     try {
-      $sucess = $this->Project->archive($id);
+      $success = $this->Project->archive($id);
     } catch (Exception $e) {
-      $this->Message->error($e->getMessage().' ('.$id.')');
+      $this->Message->error(
+        'ERROR_PROJECT_ARCHIVE',
+        $e->getMessage().' ('.$id.')', true
+      );
     }
-
-    if($sucess) {
-      $this->Message->notice(
-        sprintf(__('The project was sucessfully archived (%s)',true),$id)'
+    if($success) {
+      $this->Message->success(
+        sprintf(__('The project was sucessfully archived (%s)',true),$id),
+        true
       );
     } else {
       $this->Message->error(
-        sprintf(__('Sorry but the project couldn\'t be updated  (%s)',true),$id)
+        'ERROR_PROJECT_ARCHIVE',
+        sprintf(__('Sorry but the project couldn\'t be archived (%s)',true),$id),
+        true
       );
     }
   }
@@ -148,16 +145,20 @@ class ProjectsController extends AppController {
     try {
       $sucess = $this->Project->restore($id);
     } catch (Exception $e) {
-      $this->Message->error($e->getMessage().' ('.$id.')');
+       $this->Message->error(
+         'ERROR_PROJECT_RESTORE',
+         $e->getMessage().' ('.$id.')',
+         true
+       );
     }
-
     if($sucess) {
       $this->Message->success(
-        sprintf(__('The project was sucessfully restored (%s)',true),$id), 'notice'
+        sprintf(__('The project was sucessfully restored (%s)',true),$id), true
       );
     } else {
       $this->Message->error(
-        sprintf(__('Sorry but the project couldn\'t be restored (%s)',true),$id), 'error'
+        'ERROR_PROJECT_RESTORE',
+        sprintf(__('Sorry but the project couldn\'t be restored (%s)',true),$id), true
       );
     }
   }

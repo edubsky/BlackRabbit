@@ -19,7 +19,7 @@ class LogComponent extends Object {
   */
   function initialize(&$controller,$settings=array()){
     $this->Controller = &$controller;
-    $this->__UserLog = ClassRegistry::init('UserLog');
+    $this->__UserLog = Common::getModel('UserLog');
     $this->Controller->UserLog = &$this->__UserLog;
   }
 

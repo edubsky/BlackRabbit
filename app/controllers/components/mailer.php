@@ -3,7 +3,7 @@
  * Mailer Component
  * A redefinition of the default mail component
  * This is to avoid conflict with Email model name but
- * also adds in the mix the default system config
+ * also adds in the mix the default system config & debug
  *
  * @copyright   2010 (c) Greenpeace International
  * @author      remy.bertot@greenpeace.org
@@ -33,13 +33,11 @@ class MailerComponent extends EmailComponent{
   }
 
   /**
-   * Before redirect hook
-   * @param $controller
-   * @param $url
-   * @param $status
-   * @param $exit
+   * Send an email
+   * @access public
    */
-  function beforeRedirect(&$controller, $url, $status=null, $exit=true) {
+  function send() {
+    parent::send();
     // Allows some debugging magik
     if($this->delivery == 'debug'){
       $debug = $this->Controller->Session->read('Message');

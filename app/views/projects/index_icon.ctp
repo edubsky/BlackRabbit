@@ -17,9 +17,8 @@
   <div class='view icon'>
     <div class='paginator'>
       <?php echo __('Order by'); ?> :
-      <?php echo $this->MyPaginator->sort(__('Name',true),'Project.name'); ?> |
-      <?php echo $this->MyPaginator->sort(__('Description',true),'Project.description');?> |
-      <?php echo $this->MyPaginator->sort(__('Created',true),'Project.creation');?>
+      <?php echo $this->MyPaginator->sort(__('name',true),'Project.name'); ?> |
+      <?php echo $this->MyPaginator->sort(__('creation date',true),'Project.created');?>
     </div>
     <ul>
 <?php

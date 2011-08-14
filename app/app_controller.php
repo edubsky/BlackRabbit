@@ -47,7 +47,7 @@ class AppController extends Controller {
    * @return void
    */
   function beforeFilter(){
-    $this->Auth->filterAccess();
+    $this->Auth->checkAccess();
   }
 
   /**

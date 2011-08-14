@@ -12,8 +12,8 @@
 <?php if(!User::isGuest()): ?>
   <div class="userbadge">
     <p><?php echo __('Welcome back')?> <strong><?php
-             echo User::get('Person.fname').' '
-             .User::get('Person.lname')
+             echo User::get('Person.firstname').' '
+             .User::get('Person.lastname')
              .' ('.User::get('Role.name').')'; ?></strong>:</p>
     <span>
       <a href="<?php echo Router::Url('/users/preferences',true) ?>" class="preferences<?php echo $class; ?>"><?php echo __('preferences',true);?></a> |

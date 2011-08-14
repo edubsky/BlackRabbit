@@ -73,3 +73,7 @@
   border:1px solid #CCC;
   background:#FFF;
 }
+.paging .limit a:hover,
+.paging .limit a.current:hover{
+  background-color:#FAFAFA;
+}

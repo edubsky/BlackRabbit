@@ -20,11 +20,11 @@
 }
 .sidebar .widget_header{
 }
-.sidebar h3 a.toggle {
+.sidebar h3 a.js_toggle {
   display:block;
   padding:3px 5px 1px 7px;
 }
-.sidebar h3 a.toggle.with_icon {
+.sidebar h3 a.js_toggle.with_icon {
   padding-left: 26px;
   background-position: 4px 4px;
 }
@@ -32,19 +32,19 @@
   width:100%;
   display:block;
 }
-.sidebar h3 a.toggle.open span {
+.sidebar h3 a.js_toggle.open span {
   background:transparent url(../img/layout/arrow_up.png) right center no-repeat;
 }
-.sidebar h3 a.toggle.closed span {
+.sidebar h3 a.js_toggle.closed span {
   background:transparent url(../img/layout/arrow_down.png) right center no-repeat;
 }
-.sidebar h3 a.toggle.open:hover span {
+.sidebar h3 a.js_toggle.open:hover span {
   background:transparent url(../img/layout/arrow_up2.png) right center no-repeat;
 }
-.sidebar h3 a.toggle.closed:hover span {
+.sidebar h3 a.js_toggle.closed:hover span {
   background:transparent url(../img/layout/arrow_down2.png) right center no-repeat;
 }
-.sidebar .toggle_wrapper {
+.sidebar .js_toggle_wrapper {
 }
 .sidebar ul {
   padding:5px 10px;

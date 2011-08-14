@@ -38,7 +38,7 @@ class LoggableBehavior extends ModelBehavior {
    * @access public
    */
   function setup(&$Model, $settings = array()){
-    $this->__UserLog = ClassRegistry::init('UserLog');
+    $this->__UserLog = Common::getModel('UserLog');
   }
 
   /**

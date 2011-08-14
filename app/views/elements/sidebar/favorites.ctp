@@ -10,6 +10,7 @@
     ClassRegistry::init('Favorite');
   }
   $favorites = Favorite::getAllCount();
+  //pr($favorites);die;
 ?>
 <?php $widgets->header(	'favorites',__('Favorites',true),array('toogle' => true)); ?>
 <?php if(sizeof($favorites)): ?>

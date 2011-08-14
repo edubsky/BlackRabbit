@@ -11,84 +11,80 @@ class UsersController extends AppController {
   var $name = 'Users'; /// @var controller name
 
   /**
-   * Login Action
+   * Login action
    * @return void
    * @access public
    */
   function login() {
-    $this->layout = 'login';
-    if(!User::isGuest()) {
-      $this->Message->warning(
-        sprintf(__('You are already logged in!',true),
-        $this->name,$this->action),true
-      );
-    } elseif($this->Auth->login()) {
+    if ($this->Auth->login()) {
       $this->redirect('/home');
+    } else {
+      // check if application cookie is set or display warning
+      // see also js/cookiecheck.js
+      Common::isCookieSet();
+      $this->layout = 'login';
     }
   }
 
   /**
-   * Logout
+   * Logout action
+   * @return void
+   * @access public
    */
   function logout() {
     $this->Auth->logout();
   }
 
   /**
-   * Reset password procedure
-   * Uses the one time authentication key mechanism
-   * @TODO finish lost password procedure
+   * Forgotten password procedure
    * @return void
    * @access public
    */
   function forgot_password() {
-    $this->layout = 'login';
-    if(!User::isGuest()) {
-      $this->Message->warning(
-        sprintf(__('Please logout or go to preferences!',true),
-        $this->name,$this->action), true
-      );
-    } elseif(!empty($this->data)) {
-      // @TODO validation on email format
-      $user = $this->User->find('first',
-        $this->User->getFindOptions('forgot_password',$this->data)
-      );
-      if(!empty($user)){
-        // @todo Generate auth key
-        // @todo Send email
-        if ($user['User']['active']) {
-          $this->__send_forgot_password_email(&$user);
-          $this->Message->notice(
-            __('An email with instruction to reset your password was sent!', true),
-            array('action'=>'forgot_password')
-          );
-        } else {
-          $this->Message->error(
-            __('Your account have been disabled. Please contact our support.',true),
-            array('action'=>'login')
-          );
-        }
-      }
-      $this->Message->error(
-        __('This is not a valid email address', true),
-        array('action'=>'forgot_password')
-      );
-    }
+   $this->layout = 'login';
+   $this->Auth->forgotPassword();
   }
 
   /**
-   * Send instructions for forgotten password
-   * @param  array $user
-   * @return bollean $success
-   * @access private
+   * Reset a password
+   * @param string[32+32] user_id + authKey uuid without '-' inverted
+   * @return void
+   * @access public
    */
-  function __send_forgot_password_email($user){
-    $this->set('user',$user);
-    $this->Mailer->to = $user['User']['username'];
-    $this->Mailer->subject = Configure::read('App.email.subjectPrefix').
-      __('Please reset your password',true);
-    $this->Mailer->template = 'forgot_password';
-    $this->Mailer->send();
+  function reset_password($token=null) {
+    if (User::isGuest()) {
+      $this->layout = 'login';
+      $this->Auth->resetPassword($token);
+      $this->set('token',$token);
+    }
+  }
+
+  function index($type=null) {
+    /*switch($type){
+      case 'archived':
+        $conditions = array('archived' =>'1');
+      break;
+      case 'all': default:
+        $conditions = array('archived'=>'0');
+      break;
+    }
+    $this->paginate = array(
+      'conditions' => $conditions,
+      'contain' => array(
+        'Favorite(id,user_id,model,created)',
+      ),
+      'fields' => array(
+        'id','name','description','created'
+      )
+    );
+    $this->set('projects', $this->paginate());
+
+    // view mode
+    $viewMode = $this->DisplaySettings->getViewMode();
+    if($viewMode) {
+      $this->render('index_'.$viewMode);
+    }*/
+
   }
 
   /**

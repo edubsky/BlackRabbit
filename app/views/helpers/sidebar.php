@@ -16,7 +16,7 @@ class SidebarHelper extends Apphelper {
    */
   function beforeRender() {
     if (!isset($this->model)) {
-      $this->model = ClassRegistry::init('Sidebar'); // initialize model or get it back
+      $this->model = Common::getModel('Sidebar');
     }
   }
 

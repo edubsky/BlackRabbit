@@ -1,0 +1,112 @@
+<?php
+/**
+ * Main application configuration file
+ *
+ * @copyright   2010 (c) Greenpeace International
+ * @author      remy.bertot@greenpeace.org
+ * @package     app.config.config.php
+ */
+if (!defined('FULL_BASE_URL')) {
+  define('FULL_BASE_URL', '');
+}
+$config = array(
+  'App.name' => 'Greenpeace Black Rabbit',
+  'App.copyright' => '2010 &copy; Greenpeace International',
+  'App.browserTitle' => '%s | Greenpeace International', // %s = context
+  // Version details
+  'App.version' => array(
+    'number' => '0.1.200710',
+    'name' => ' ~ BlackRabbit'
+   ),
+   // Environements settings
+  'App.environment' => 'development', // || development, staging, production
+  'App.domain' => array(
+    'development' => 'http://localhost/boost',
+    'staging' => 'http://staging.boost.gl3',
+    'production' => 'http://boost.gl3'
+  ),
+  // Coockie's settings
+  'App.cookie' => array(
+    'life' => '+1 month',
+    'name' => 'BLACKRABBIT_APP'
+  ),
+  // CSS Settings
+  'App.css' => array(
+    'compile' => false,
+    'compileFolder' => 'aggregate'
+  ),
+  // Email settings
+  'App.email' => array(
+    'deliveryMethod' => 'mail',
+    'useActivation' => false,
+    'smtpOptions' => array(
+      'port' => '25',
+      'timeout' => '30',
+      'host' => 'smtp.greenpeace.org',
+      'username' => 'no-reply@greenpeace.org',
+      'password' => ''
+    ),
+    'defaults' => array(
+      'guestAccount' => 'guest@greenpeace.org',
+      'support' => 'supporter-services@greenpeace.org',
+      'feedback' => 'feedback@greenpeace.org',
+      'bug' => 'general.support@greenpeace.org',
+      'registration' => 'Greenpeace <no-reply@greenpeace.org>',
+      'noReply' => 'Greenpeace <no-reply@greenpeace.org>',
+      'lead_dev' => 'rbertot@greenpeace.org',
+    )
+  ),
+  // 3rd Party - Recapcha
+  'App.recaptcha' => array(
+    'publicKey' => '6LfXQgYAAAAAAHH3k76pZcBsbmsI6uustwK4lBF2',
+    'privateKey' => '6LfXQgYAAAAAANChwyDVWumArldovDFn1O8G1TpW',
+    'apiServer' => 'http://api.recaptcha.net',
+    'apiSecureServer' => 'https://api-secure.recaptcha.net',
+    'verifyServer' => 'api-verify.recaptcha.net'
+  ),
+  // Avatar
+  'App.avatar' => array(
+    'size' => '52',
+    'default' => '/img/layout/defaultAvatar.png',
+  ),
+  // Secure Socket Layer
+  'App.ssl' => array(
+    'enabled' => false,
+    'actions' => array(
+      '/'
+    )
+  ),
+  'App.locale' => array(
+    //'currency' => 'USD',
+    //'dateformat' => ''
+    //'timezone'
+  ),
+  // Nice shiny stuffs
+  'App.gui' => array(
+    'use_javascript' => true, // evil!
+    'use_icons' => true,      // shiny!
+    'use_tooltips' => true,   // contextual help  
+    'tables' => array(        // tables accessories
+      'resizable' => false,    // resizable table collumn
+      'nowrap' => false        // text wrap in table cell
+    )
+  ),
+  // Models for which favorites (starring) is enabled
+  'App.favorites' => array(
+    'enabled' => true,
+    'models' => array(
+      'Project' => true,
+      'User' => true
+    )
+  ),
+  // Models for wich selections is enabled
+  'App.selections' => array(
+    'enabled' => true,
+    'models' => array(
+      'Project' => true,
+      'User' => true
+    )
+  )
+);
+//_EOF
+?>

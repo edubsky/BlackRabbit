@@ -9,6 +9,7 @@
   $title_for_layout = __('Project Index',true);
   $this->set('title_for_layout',$title_for_layout);
   $urlBase = 'content'.DS;
+  //pr(User::get());
 ?>
 <?php echo $this->element('content'.DS.'content_header'); ?>
 <?php if(!count($projects)): ?>

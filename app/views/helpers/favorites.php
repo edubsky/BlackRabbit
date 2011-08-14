@@ -32,7 +32,7 @@ class FavoritesHelper extends Apphelper {
    */
   function link($uuid,$model,$isFavorited=null) {
     if(is_null($isFavorited)){
-      $isFavorited = ClassRegistry::init('Favorite')->isFavorited($uuid,$model);
+      $isFavorited = Common::getModel('Favorite')->isFavorited($uuid,$model);
     }
     if (!$isFavorited) {
       $img = $this->Html->image(
@@ -64,4 +64,3 @@ class FavoritesHelper extends Apphelper {
     return $this->Html->image($this->config['icons']['fav']);
   }
 }//_EOF
-?>

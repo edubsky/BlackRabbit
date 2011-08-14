@@ -33,7 +33,7 @@ class MessageComponent extends Object{
       }
       return true;
    } else {
-      $this->add(__('Session component not found  (Message::initilize)',true),'fatal');
+      throw new exception('Session component not found (Message::initilize)');
     }
   }
 
@@ -48,16 +48,10 @@ class MessageComponent extends Object{
    */
   function error($code, $message, $redirect=null, $fatal=false){
     $type = $fatal ? 'fatal' : 'error';
-    $this->add($type,$message,$redirect,$code);
+    $this->__add($type,$message,$redirect,$code);
   }
-
-  /**
-   * Add a warning messsage to the queue
-   * @param string $message
-   * @param mixed $redirect url, string or array
-   */
-  function warning($message,$redirect=null,$code=null) {
-    $this->add('warning',$message,$redirect,$code);
+  function warning($code,$message,$redirect=null) {
+    $this->__add('warning',$message,$redirect,$code);
   }
 
   /**
@@ -65,8 +59,14 @@ class MessageComponent extends Object{
    * @param string $message
    * @param mixed $redirect url, string or array
    */
-  function notice($message, $redirect=null) {
-    $this->add('notice',$message,$redirect);
+  function info($message, $redirect=null, $code=null) {
+    $this->__add('info',$message,$redirect,$code);
+  }
+  function debug($message, $redirect=null, $code=null) {
+    $this->__add('debug',$message,$redirect,$code);
+  }
+  function notice($message, $redirect=null, $code=null) {
+    $this->__add('notice',$message,$redirect,$code);
   }
 
   /**
@@ -75,7 +75,7 @@ class MessageComponent extends Object{
    * @param mixed $redirect url, string or array
    */
   function success($message, $redirect=null) {
-    $this->add('success',$message,$redirect);
+    $this->__add('success',$message,$redirect);
   }
 
   /**
@@ -86,29 +86,31 @@ class MessageComponent extends Object{
    * @param bollean die
    * @access private
    */
-  function add($type='error', $message=null, $redirect=null, $code=null){
+  function __add($type='error', $message=null, $redirect=null, $code=null){
     $die = false;
     $title = '';
     $type = strtolower($type);
+    // i18n cosmetics
     switch($type) {
-      // For translation & to look good on tv...
       case 'fatal' :
-        $die = true;
         $title = __('Fatal',true);
         $this->Controller->Log->error = true;
+        $die = true;
       break;
       case 'error' :
-        $this->Controller->Log->error = true;
         $title = __('Error',true);
+        $this->Controller->Log->error = true;
       break;
-      case 'success':
+      case 'info'   :
       case 'notice' : $title = __('Notice',true); break;
       case 'warning': $title = __('Warning',true); break;
+      case 'success': $title = __('Success',true); break;
       case 'debug'  : $title = __('Debug',true); break;
     }
 
+    // message object for the view
     $this->messages[] = array(
-      'id' => Common::uuid(),
+      'id' => 'ctl'.Common::uuid(),
       'type' => ((empty($code)) ? $type : $type.' '.$code ),
       'title' => $title,
       'text' => $message
@@ -116,7 +118,7 @@ class MessageComponent extends Object{
 
     // Get the point or die trying
     if($die){
-      echo $title.': '.$message;
+      trigger_error($title.': '.$message);
       exit;
     }
 
@@ -125,6 +127,7 @@ class MessageComponent extends Object{
       if(!is_string($redirect) && !is_array($redirect)) {
         $redirect = $this->Controller->referer();
       }
+      //TODO use history if no referrer
       $this->Controller->redirect($redirect);
       exit;
     }

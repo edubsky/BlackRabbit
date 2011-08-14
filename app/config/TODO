@@ -1,0 +1,86 @@
+/**********************************************************************
+ * FEATURES / BUGS
+ **********************************************************************/
+ * Legend:  -none *some +more ?dontknow
+ **********************************************************************/
+
+- Security
+  - Self:
+  - Org:
+  * Role:
+  - form fields
+
+- App Selector
+  * menu
+  - view / elements
+
+* Right management scope: 
+  - chapter, self
+  - object ownership (as in project)
+  - fields (per forms)
+  * fields (per roles)
+
+* Date
+  - timezone support when posting data
+
+* logs 
+  ? errors msg in project:edit when title empty
+
+* Login
+  - Username alias
+  - Ldap
+
+- Sidebar
+  - search
+  - contextual help
+
+- Index generic (project as sample)
+  - inline editing (js)
+  - ajax sorting & paging
+  * selection - boxes + page / all
+  * icon view
+  - group edit
+  - batch export
+  - batch import
+
+- Users
+  - index
+  - add
+  - edit (with rights: own or others)
+  - self preferences / settings page
+
+ * Resizable
+  - th!a bug
+  - cookie/save with
+  - use default width != equal
+
+- Ajax
+  - Delete row/item on delete
+  * Fav/Unfav
+
+- Tags
+- Comments
+
+/**********************************************************************
+ * UNIT TESTS
+ *********************************************************************/
+
+[archivable behavior]
++ normal, don't exist, already archived, already unarchived
+? config disabled -> don't show in actions list
+- behavior only and not config driven
+
+[favorite controller]
++ fav, unfav, already faved, already unfaved
+
+[config]
++ tooltips
++ table resize, table no wrap
++ show disabled links, don't show
++ javascript disabled
++ css compile
+
+[preferences]
++ rewrite if present in user profile
++ don't rewrite if not defined in db / don't drop either
++ gui stuffs almost same than config

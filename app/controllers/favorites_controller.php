@@ -17,7 +17,7 @@ class FavoritesController extends AppController {
     parent::beforeFilter();
     $this->models = array_keys(Configure::read('App.favorites.models'),true);
     foreach ($this->models as $model) {
-      $this->$model = ClassRegistry::init($model);
+      $this->$model = Common::getModel($model);
       $this->Favorite->bindModel(
         array('belongsTo' => array(
           $model => array('foreignKey' => 'foreign_id')
@@ -29,27 +29,34 @@ class FavoritesController extends AppController {
   /**
    * Add a favorite for a given user
    * @param UUID $id
-   * @param string $model
+   * @param string $model name
+   * @return void
    */
-  function add($id, $model = false) {
+  function add($id, $model) {
     $userId = User::get('id');
     $favorite = $this->Favorite->find('first', array(
       'conditions' => array('user_id' => $userId, 'foreign_id' => $id)
     ));
-    $model = empty($model) ? 'object' : $model;
-    if (empty($favorite)) {
+    // what else could go wrong?
+    if (!empty($favorite)) {
+      $this->Message->warning(
+        'WARNING_FAVORITE_EXIST',
+        __('This record was already starred!', true),
+        true
+      );
+    } else {
       $this->Favorite->create(array(
         'user_id' => $userId,
         'foreign_id' => $id,
-        'model' => $model
+        'model' => strtolower($model)
       ));
       $this->Favorite->save();
       $this->Favorite->load(User::get('id'));
-      $msg = __('This record was successfully starred!', true);
-      return $this->Message->notice($msg,true);
+      $this->Message->success(
+        __('This record was successfully starred!', true),
+        true
+      );
     }
-    $msg = __('This record was already starred!', true);
-    $this->Message->warning($msg,true);
   }
 
   /**
@@ -57,22 +64,27 @@ class FavoritesController extends AppController {
    *
    * @param UUID $id of the resource
    * @param string $model name
+   * @return void
    */
-  function delete($id,$model = false) {
+  function delete($id,$model) {
     $userId = User::get('id');
     $favorite = $this->Favorite->find('first', array(
       'conditions' => array('user_id' => $userId, 'foreign_id' => $id)
     ));
-    $model = empty($model) ? 'object' : strtolower($model);
+    // what else could go wrong?
     if (empty($favorite)) {
-      $msg = __('Uh oh?! This record was not starred in the first place!',true);
-      return $this->Message->add($msg, 'warning',true);
+      $this->Message->warning(
+        'WARNING_FAVORITE_DONTEXIST',
+        __('Oops, This record was not starred in the first place!',true),
+        true
+      );
+    } else {
+      $this->Favorite->delete($favorite['Favorite']['id']);
+      $this->Favorite->load(User::get('id'));
+      $this->Message->success(
+        __('This record was removed from your starred item list.', true),
+        true
+      );
     }
-    $this->Favorite->delete($favorite['Favorite']['id']);
-    $this->Favorite->load(User::get('id'));
-    $msg = __('This record was sucessfully removed from your starred item list.', true);
-    $this->Message->notice($message,true);
-    //exit;
   }
-
 }//_EOF
